@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
-import info.novatec.testit.webtester.api.annotations.AfterInitialization;
 import info.novatec.testit.webtester.api.annotations.IdentifyUsing;
 import info.novatec.testit.webtester.api.annotations.Visible;
 import info.novatec.testit.webtester.api.pageobjects.PageObjectFactory;
@@ -87,8 +86,7 @@ public class PageObjectFactoryException extends WebTesterException {
 
     /**
      * This exception is thrown in case anything goes wrong (exception is thrown) when executing
-     * a post construct method (annotated with {@link PostConstruct @PostConstruct}
-     * or {@link AfterInitialization @AfterInitialization}).
+     * a post construct method (annotated with {@link PostConstruct @PostConstruct}.
      *
      * @since 0.9.9
      */

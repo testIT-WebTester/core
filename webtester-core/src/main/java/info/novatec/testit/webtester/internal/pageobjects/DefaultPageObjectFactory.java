@@ -19,7 +19,6 @@ import org.openqa.selenium.support.FindBys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import info.novatec.testit.webtester.api.annotations.AfterInitialization;
 import info.novatec.testit.webtester.api.annotations.IdentifyUsing;
 import info.novatec.testit.webtester.api.annotations.Internal;
 import info.novatec.testit.webtester.api.annotations.Visible;
@@ -223,7 +222,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     }
 
     private boolean shouldExecuteMethod(Method method) {
-        return method.getAnnotation(PostConstruct.class) != null || method.getAnnotation(AfterInitialization.class) != null;
+        return method.getAnnotation(PostConstruct.class) != null;
     }
 
     private <T extends PageObject> void checkVisibilityOfAnnotatedFields(T pageInstance, Class<T> pageClazz) {
