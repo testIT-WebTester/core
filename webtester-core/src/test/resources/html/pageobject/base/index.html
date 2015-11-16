@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<h1>Testdaten: PageElement</h1>
+
+	<!-- testClick -->
+
+	<br>
+	<br>
+
+	<form action="">
+		<input type="checkbox" id="visibleCheckbox">
+		<input type="checkbox" id="invisibleCheckbox" style="display: none">
+	</form>
+
+	<br>
+	<br>
+
+	<div id="visibleDiv">visible div</div>
+	<br>
+	<div id="invisibleDiv" style="display: none">invisible div</div>
+
+	<!-- testGetVisibleText -->
+
+	<br>
+	<br>
+
+	<div id="elementForVisibleText1">element for tag value</div>
+	<div id="elementForVisibleText2">
+		element
+		<span>for tag</span>
+		value
+	</div>
+	<div id="elementForVisibleText3">
+		element
+		<span style="display: none">for tag</span>
+		value
+	</div>
+
+	<!-- testIsVisible -->
+
+	<br>
+	<br>
+
+	<div id="visibleElement">visible element</div>
+	<br>
+	<div id="invisibleElement" style="display: none">invisible
+		element</div>
+
+	<!-- testIsVisible -->
+
+	<br>
+	<br>
+
+	<button id="enabledElement">enabled element</button>
+	<br>
+	<button id="disabledElement" disabled="true">disabled element</button>
+
+	<!-- testGetAttribute -->
+
+	<br>
+	<br>
+
+	<div id="attributedElement" testattribute="123">attributed
+		element</div>
+
+	<!-- testGetCssProperty -->
+
+	<br>
+	<br>
+
+	<div id="cssElement" style="border-width: 1px; border-style: solid">css
+		element</div>
+
+	<!-- testInvalidate -->
+
+	<br>
+	<br>
+
+	<input id="forInvalidation" value="element with id"/>
+	
+	<input id="forInvalidationOfList" value="A"/>
+	<input id="forInvalidationOfList" value="B"/>
+	<input id="forInvalidationOfList" value="C"/>
+	
+	<!-- wait tests -->
+
+	<br>
+	<br>
+
+	<span id="spanIsPresent" style="display: none">present element</span>
+
+	<span id="spanIsVisible">visible element</span>
+
+	<span id="spanIsNotVisible" style="display: none">invisible element</span>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>info.novatec.testit</groupId>
+		<artifactId>webtester</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>webtester-support-assertj</artifactId>
+	<name>testIT | WebTester - Support - AssertJ</name>
+
+	<properties>
+		<project.root>..</project.root>
+		<version.asserj>1.7.1</version.asserj>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<!-- Required dependency on webtester-core. This is needed in order to 
+				have access to the frameworks base features. The dependency should be inherited 
+				by projects using this module. -->
+			<groupId>info.novatec.testit</groupId>
+			<artifactId>webtester-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Optional dependency on assertj-core. Projects using this module should 
+				provide their own version of the assertj dependency and not be forced to 
+				inherit this one! -->
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${version.asserj}</version>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+</project>

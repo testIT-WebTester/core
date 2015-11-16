@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript">
+	
+	function makeEditable(){
+		document.getElementById("switchable").readOnly=!document.getElementById("switch").checked
+	}
+
+</script>
+</head>
+<body>
+
+	<h1>Condition: ReadOnly Test Page</h1>
+	<h3>This page contains elements for testing the functionality of the Wait API Condition 'ReadOnly'.</h3>
+	
+	<hr/>
+	<p><br/><br/></p>
+	<table>
+		<tbody>
+			<tr>
+				<td>Will be read-only until checkbox is checked</td>
+				<td>
+					<input id="switchable" value="foo bar" readonly="readonly"/>
+					<input id="switch" type="checkbox" onchange="makeEditable()"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p><br/><br/></p>
+	<hr/>
+
+</body>
+</html>

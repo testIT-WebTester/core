@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<h1>TextField Test Page</h1>
+	<h3>This page contains elements for testing the functionality of the TextField page object class.</h3>
+
+	<hr>
+	<br><br>
+	
+	<table>
+		<tbody>
+			<tr>
+				<td>An empty text field</td>
+				<td><input type="text" id="empty" value=""></td>
+			</tr>
+			<tr>
+				<td>A text field with a preset value</td>
+				<td><input type="text" id="withValue" value="value"></td>
+			</tr>
+			<tr>
+				<td>A text field with a preset value and a max length of 2</td>
+				<td><input type="text" id="withValueAndMaxLength" value="12" maxlength="3"></td>
+			</tr>
+			<tr>
+				<td>A text field with a max length of 2</td>
+				<td><input type="text" id="maxLength" maxlength="2"></td>
+			</tr>
+			<tr>
+				<td>An invisible text field</td>
+				<td><input type="text" id="invisible" style="display: none" value="invisible"></td>
+			</tr>
+			<tr>
+				<td>A disabled text field</td>
+				<td><input type="text" id="disabled" disabled value="disabled"></td>
+			</tr>
+			<tr>
+				<td>All types of supported text fields</td>
+				<td>
+					<input id="input_none" value="No Input Type">
+					<br>
+					<input type="" id="input_empty" value="Empty Input Type">
+					<br>
+					<input type="text" id="input_text" value="Text Input Type">
+					<br>
+					<input type="password" id="input_password" value="Password Input Type">
+					<br>
+					<input type="number" id="input_number" value="123">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<br><br>
+	<hr>
+
+</body>
+</html>

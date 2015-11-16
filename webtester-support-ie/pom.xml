@@ -1,0 +1,42 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>info.novatec.testit</groupId>
+		<artifactId>webtester</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>webtester-support-ie</artifactId>
+	<name>testIT | WebTester - Support - Internet Explorer</name>
+
+	<properties>
+		<project.root>..</project.root>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<!-- Required dependency on webtester-core. This is needed in order to 
+				have access to the frameworks base features. The dependency should be inherited 
+				by projects using this module. -->
+			<groupId>info.novatec.testit</groupId>
+			<artifactId>webtester-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Required dependency on selenium-ie-driver used to interact with an 
+				Internet Explorer browser. The dependency should be inherited by projects 
+				using this module. If another version of this dependency is needed / wanted 
+				it should be overridden by the project. -->
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-ie-driver</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

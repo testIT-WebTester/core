@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	
+	function displayButton(butonId){
+		
+		var buttonStyle = document.getElementById(butonId).style
+		
+		buttonStyle.display='inline'
+		buttonStyle.visibility='visible'
+		
+	}
+
+	function displayButtonWithDelay(butonId){
+		setTimeout(function() {
+			displayButton(butonId)
+		}, 500);
+	}
+
+</script>
+</head>
+<body>
+
+	<h1>Mouse Test Page</h1>
+	<h3>This page contains elements for testing the functionality of the Mouse utility class.</h3>
+	
+	<hr>
+	
+	The first scenario is used to demonstrate how to 'move' the mouse over one or several elements of an page with various delays between the actions.<br>
+	There are three buttons:
+	<ol>
+		<li>The first button 'Start Button' is initially displayed</li>
+		<li>The second button 'Instant Button' is displayed as soon as the mouse is moved over the 'Start Button'.</li>
+		<li>The third button 'Delayed Button' is displayed after the mouse is moved over the 'Instant Button' with a delay of 500ms.</li>
+	</ol>
+	
+	<br><br>
+	<button 
+		id="moveTo_startButton" 
+		onmouseover="displayButton('moveTo_instantButton')">
+			 Move To: Start Button
+	</button>
+	<br><br>
+	<button 
+		id="moveTo_instantButton" 
+		style="display: none; 
+		visibility: hidden" 
+		onmouseover="displayButtonWithDelay('moveTo_delayedButton')">
+			Move To: Instant Button
+	</button>
+	<br><br>
+	<button 
+		id="moveTo_delayedButton" 
+		style="display: none; 
+		visibility: hidden">
+			Move To: Delayed Button
+	</button>
+	<br><br>
+
+	<hr>
+	
+	The second scenario is used to demonstrate how to double click an element.<br>
+	There are three buttons:
+	<ol>
+		<li>The first button 'Single Click Button' is initially displayed</li>
+		<li>The second button 'Double Click Button' is initially displayed</li>
+		<li>The third button 'Target Button' is displayed after the 'Single Click Button' was single clicked or the 'Double Click Button' was double clicked.</li>
+	</ol>
+
+	<br><br>
+	<button 
+		id="click_singleClickButton"
+		onclick="displayButton('click_targetButton')">
+			Click: Single Click Button
+	</button>
+	<button 
+		id="click_doubleClickButton"
+		ondblclick="displayButton('click_targetButton')">
+			Click: Double Click Button
+	</button>
+	<br><br>
+	<button 
+		id="click_targetButton"
+		style="display: none; 
+		visibility: hidden">
+			Click: Target Button
+	</button>
+	<br><br>
+
+	<hr>
+	
+</body>
+</html>

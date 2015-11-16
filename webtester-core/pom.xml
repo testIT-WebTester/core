@@ -1,0 +1,61 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>info.novatec.testit</groupId>
+		<artifactId>webtester</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>webtester-core</artifactId>
+	<name>testIT | WebTester - Core</name>
+
+	<properties>
+		<project.root>..</project.root>
+	</properties>
+
+	<dependencies>
+
+		<!-- compile -->
+
+		<dependency>
+			<!-- SLF4J API used for logging. The actual logging implementation has 
+				to be provided by the project using the WebTester framework. -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<!-- Common language extensions used mainly for String operations. -->
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<!-- Commons IO used for the creation and manipulation of files. -->
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
+			<!-- Selenium dependency used to have access to the Selenium API. -->
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+		</dependency>
+
+		<!-- test -->
+
+		<dependency>
+			<!-- Firefox driver used in tests. Is scoped as a test dependency in order 
+				to not be a transitive dependency for the actual project using the WebTester 
+				framework. -->
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

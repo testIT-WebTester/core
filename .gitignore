@@ -1,0 +1,9 @@
+!.gitignore
+.project
+.classpath
+.eclipse-pmd
+.idea/
+*.iml
+**/.settings/
+**/.metadata/
+**/target/

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	
+	function removeFoo(){
+		
+		var parent = document.getElementById("container1");
+		var child = document.getElementById("container1:foo");
+		
+		parent.removeChild(child);
+
+	}
+
+	function removeFooDelayed(){
+		
+		setTimeout(function() {
+
+			var parent = document.getElementById("container1");
+			var child = document.getElementById("container1:foo");
+			
+			parent.removeChild(child);
+
+		}, 500);
+	
+	}
+
+	function addFoo(){
+
+		var parent = document.getElementById("container2");
+		var child = document.createElement("input");
+		child.setAttribute("id", "container2:foo");
+
+		parent.appendChild(child);
+		
+	}
+	
+</script>
+</head>
+<body>
+
+	<h1>StaleElementException Reovery Test Page</h1>
+	<h3>This page contains elements for testing the frecovery mechanisms for StaleElementException cases.</h3>
+
+	<hr>
+	<br><br>
+	
+		<button id="removeFoo" onclick="removeFoo()">Remove Foo</button>
+		<button id="removeFooDelayed" onclick="removeFooDelayed()">Remove Foo Delayed</button>
+		<button id="addFoo" onclick="addFoo()">Add Foo</button>
+		
+		<br><br>
+		
+		<div id="container1">
+			<input id="container1:foo" />
+		</div>
+	
+		<div id="container2">
+		</div>
+		
+	<br><br>
+	<hr>
+
+</body>
+</html>
