@@ -1,4 +1,6 @@
 # testIT WebTester
+
+[![Join the chat at https://gitter.im/testIT-WebTester/webtester-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/testIT-WebTester/webtester-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 testIT WebTester is a web-application UI test automation framework based on Selenium (http://www.seleniumhq.org).
 
 It is the product of years of consulting experience in various projects and aims at providing a very intuitive, declarative and extendable API for writing programmatic UI tests in Java.
