@@ -92,7 +92,6 @@ import info.novatec.testit.webtester.junit.runner.internal.TestClassPlausibility
  * </ol>
  * <p>
  * <b>Exaple test class:</b>
- * <p>
  * <pre>
  * <code>
  * public class FooTest {

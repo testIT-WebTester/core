@@ -23,6 +23,7 @@ public class Either<T> implements Predicate<T> {
 
     private List<Predicate<T>> predicates;
 
+    @SafeVarargs
     public Either(Predicate<T>... predicates) {
         this.predicates = Arrays.asList(predicates);
     }
