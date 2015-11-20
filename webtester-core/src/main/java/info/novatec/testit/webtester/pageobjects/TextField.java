@@ -27,11 +27,8 @@ import info.novatec.testit.webtester.utils.Asserts;
  * <li><b>tag:</b> input <b>type:</b> ""</li>
  * <li><b>tag:</b> input <b>type:</b> text</li>
  * </ul>
- * The following HTML elements are supported but not strictly text fields:
- * <ul>
- * <li><b>tag:</b> input <b>type:</b> password</li>
- * <li><b>tag:</b> input <b>type:</b> number</li>
- * </ul>
+ * Since HTML5 brought a lot of new input types and not every browser has implemented all of the types this class
+ * will accept every input type that is not obviously a non-text field (i.e. radio, button, checkbox etc.).
  *
  * @since 0.9.0
  */
@@ -44,7 +41,8 @@ public class TextField extends PageObject implements HasText {
     private static final String APPEND_TEXT = "changed text from '{}' to '{}' by trying to append '{}'";
 
     private static final String INPUT_TAG = "input";
-    private static final Set<String> VALID_TYPES = Sets.newHashSet("", "text", "password", "number");
+    private static final Set<String> INVALID_TYPES = Sets.newHashSet("button", "checkbox", "hidden",
+                "image", "radio", "range", "reset", "submit");
 
     /**
      * Retrieves the text value of this {@link TextField text field}. If no text
@@ -149,7 +147,7 @@ public class TextField extends PageObject implements HasText {
         String type = StringUtils.defaultString(webElement.getAttribute("type")).toLowerCase();
 
         boolean isCorrectTag = INPUT_TAG.equalsIgnoreCase(tagName);
-        boolean isCorrectType = VALID_TYPES.contains(type);
+        boolean isCorrectType = ! INVALID_TYPES.contains(type);
 
         return isCorrectTag && isCorrectType;
 

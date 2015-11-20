@@ -158,8 +158,19 @@ but it will have methods to change selection based on index, value or text.
 
 **HTML Tags:**
 
-- `<input/>`
-- `<input type=""/>`
-- `<input type="text"/>`
-- `<input type="password"/>`
-- `<input type="number"/>`
+- Intended for:
+
+  - `<input/>`
+  - `<input type=""/>`
+  - `<input type="text"/>`
+
+- Also accepts everything that _isn't_:
+
+  - `<input type="button"/>`
+  - `<input type="reset"/>`
+  - `<input type="submit"/>`
+  - `<input type="checkbox"/>`
+  - `<input type="radio"/>`
+  - `<input type="image"/>`
+  - `<input type="range"/>`
+  - `<input type="hidden"/>`
