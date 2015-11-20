@@ -231,7 +231,7 @@ public class TextFieldTest extends AbstractPageObjectTest {
 
     @Test
     public void testCorrectnessOfClassForWebElement_inputTag_nonTextFieldType() {
-        stubWebElementTagAndType("input", "other");
+        stubWebElementTagAndType("input", "radio");
         assertThatCorrectnessOfClassIs(false);
     }
 
