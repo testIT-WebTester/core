@@ -1,10 +1,6 @@
 package info.novatec.testit.webtester.pageobjects;
 
-import static info.novatec.testit.webtester.utils.Conditions.is;
-import static info.novatec.testit.webtester.utils.Conditions.present;
-
 import org.apache.commons.lang.StringUtils;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -16,16 +12,15 @@ import info.novatec.testit.webtester.api.browser.Browser;
 import info.novatec.testit.webtester.api.callbacks.PageObjectCallback;
 import info.novatec.testit.webtester.api.callbacks.PageObjectCallbackWithReturnValue;
 import info.novatec.testit.webtester.api.events.Event;
-import info.novatec.testit.webtester.api.exceptions.PageObjectIsInvisibleException;
-import info.novatec.testit.webtester.api.exceptions.StaleElementRecoveryException;
 import info.novatec.testit.webtester.api.exceptions.WrongElementClassException;
 import info.novatec.testit.webtester.api.pageobjects.Identification;
 import info.novatec.testit.webtester.api.pageobjects.PageObjectFactory;
 import info.novatec.testit.webtester.api.pageobjects.PageObjectList;
 import info.novatec.testit.webtester.api.pageobjects.traits.Invalidateable;
 import info.novatec.testit.webtester.eventsystem.EventSystem;
-import info.novatec.testit.webtester.eventsystem.events.browser.ExceptionEvent;
 import info.novatec.testit.webtester.eventsystem.events.pageobject.ClickedEvent;
+import info.novatec.testit.webtester.internal.annotations.SetViaInjection;
+import info.novatec.testit.webtester.internal.pageobjects.ActionTemplate;
 import info.novatec.testit.webtester.internal.pageobjects.PageObjectModel;
 import info.novatec.testit.webtester.utils.Identifications;
 import info.novatec.testit.webtester.utils.Invalidator;
@@ -33,8 +28,6 @@ import info.novatec.testit.webtester.utils.Marker;
 import info.novatec.testit.webtester.utils.PageObjectFinder;
 import info.novatec.testit.webtester.utils.PageObjectFinder.IdentificationFinder;
 import info.novatec.testit.webtester.utils.PageObjectFinder.TypedFinder;
-import info.novatec.testit.webtester.utils.Waits;
-
 
 /**
  * Base implementation for all page object classes. Any class sub-classing this
@@ -44,16 +37,18 @@ import info.novatec.testit.webtester.utils.Waits;
  *
  * @since 0.9.0
  */
-@SuppressWarnings("PMD.AvoidCatchingGenericException")
 public class PageObject implements Invalidateable {
 
     private static final Logger logger = LoggerFactory.getLogger(PageObject.class);
 
+    @SetViaInjection
     private PageObjectModel model;
     private WebElement cachedWebElement;
 
+	private ActionTemplate template;
+
     protected PageObject() {
-        // empty default constructor for the initialization via reflection
+		template = new ActionTemplate(this);
     }
 
     /**
@@ -305,10 +300,6 @@ public class PageObject implements Invalidateable {
         });
     }
 
-    protected String logMessage(String message) {
-        return model.getLogPrefix() + message;
-    }
-
     /**
      * @param propertyName the name of the css property for which the value
      * should be returned
@@ -473,7 +464,7 @@ public class PageObject implements Invalidateable {
             logger.trace(logMessage("invalidated"));
             cachedWebElement = null;
         } else {
-            logger.debug("skipping invalidation of {] because it is part of a list");
+            logger.debug("skipping invalidation of {} because it is part of a list", this);
         }
     }
 
@@ -514,8 +505,6 @@ public class PageObject implements Invalidateable {
         return getBrowser().create(pageClass);
     }
 
-    /* action template */
-
     /**
      * Executes the given {@link PageObjectCallback callback} with this
      * {@link PageObject page object} as input. This method provides a template
@@ -526,86 +515,30 @@ public class PageObject implements Invalidateable {
      * @since 0.9.7
      */
     public final void executeAction(PageObjectCallback callback) {
-        try {
-            callback.execute(this);
-        } catch (StaleElementReferenceException e) {
-            logger.trace("trying to resolve stale element exception", e);
-            tryToResolveStaleElementException(callback);
-        } catch (ElementNotVisibleException e) {
-            PageObjectIsInvisibleException newException = new PageObjectIsInvisibleException(this, e);
-            fireExceptionEvent(newException);
-            throw newException;
-        } catch (RuntimeException e) {
-            fireExceptionEvent(e);
-            throw e;
-        }
+		template.executeAction(callback);
     }
 
-    private void tryToResolveStaleElementException(PageObjectCallback callback) {
-        try {
-            Invalidator.invalidate(this);
-            Waits.waitUntil(this, is(present()));
-            callback.execute(this);
-            logger.trace("succeeded in resolving stale element exception");
-        } catch (RuntimeException e) {
-            logger.trace("failed in resolving stale element exception");
-            StaleElementRecoveryException recoveryException = new StaleElementRecoveryException(e);
-            fireExceptionEvent(recoveryException);
-            throw recoveryException;
-        }
+	/**
+	 * Executes the given {@link PageObjectCallbackWithReturnValue callback}
+	 * with this {@link PageObject page object} as input and a return value of
+	 * type B as output. This method provides a template for executing
+	 * operations on page objects and automatically manage retries and exception
+	 * handling.
+	 *
+	 * @param <B> the type of the return value of the action
+	 * @param callback the callback to execute
+	 * @return the return value of the callback
+	 * @since 0.9.7
+	 */
+	public final <B> B executeAction(PageObjectCallbackWithReturnValue<B> callback) {
+		return template.executeAction(callback);
+	}
+
+    protected String logMessage(String message) {
+        return model.getLogPrefix() + message;
     }
 
-    /**
-     * Executes the given {@link PageObjectCallbackWithReturnValue callback}
-     * with this {@link PageObject page object} as input and a return value of
-     * type B as output. This method provides a template for executing
-     * operations on page objects and automatically manage retries and exception
-     * handling.
-     *
-     * @param <B> the type of the return value of the action
-     * @param callback the callback to execute
-     * @return the return value of the callback
-     * @since 0.9.7
-     */
-    public final <B> B executeAction(PageObjectCallbackWithReturnValue<B> callback) {
-        B value;
-        try {
-            value = callback.execute(this);
-        } catch (StaleElementReferenceException e) {
-            logger.trace("trying to resolve stale element exception", e);
-            value = tryToResolveStaleElementException(callback);
-        } catch (ElementNotVisibleException e) {
-            PageObjectIsInvisibleException newException = new PageObjectIsInvisibleException(this, e);
-            fireExceptionEvent(newException);
-            throw newException;
-        } catch (RuntimeException e) {
-            fireExceptionEvent(e);
-            throw e;
-        }
-        return value;
-    }
-
-    private <B> B tryToResolveStaleElementException(PageObjectCallbackWithReturnValue<B> callback) {
-        B value;
-        try {
-            Invalidator.invalidate(this);
-            Waits.waitUntil(this, is(present()));
-            value = callback.execute(this);
-            logger.trace("succeeded in resolving stale element exception");
-        } catch (RuntimeException e) {
-            logger.trace("failed in resolving stale element exception");
-            StaleElementRecoveryException recoveryException = new StaleElementRecoveryException(e);
-            fireExceptionEvent(recoveryException);
-            throw recoveryException;
-        }
-        return value;
-    }
-
-    private void fireExceptionEvent(RuntimeException e) {
-        EventSystem.fireEvent(new ExceptionEvent(this, e));
-    }
-
-    @Override
+	@Override
     public String toString() {
 
         StringBuilder subject = new StringBuilder(getClass().getSimpleName());
