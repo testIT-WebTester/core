@@ -18,7 +18,7 @@ public class MethodTestBrowser extends AbstractTestBrowser {
     }
 
     @Override
-    public void beforeTest() throws IllegalAccessException {
+    public void beforeTest() throws ReflectiveOperationException {
         LOGGER.debug("beforeTest");
         createBrowserIfNecessary(target);
         openEntryPointIfSet();

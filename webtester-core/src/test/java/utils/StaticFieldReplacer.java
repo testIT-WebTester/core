@@ -22,7 +22,7 @@ public class StaticFieldReplacer extends ExternalResource {
     }
 
     @Override
-    public void before() throws IllegalAccessException, NoSuchFieldException {
+    public void before() throws ReflectiveOperationException {
         original = ReflectionUtils.forceGetFieldValue(clazz, fieldName);
         ReflectionUtils.forceSetField(clazz, fieldName, replacement);
     }

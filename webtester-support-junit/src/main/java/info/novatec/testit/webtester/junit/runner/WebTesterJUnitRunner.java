@@ -176,7 +176,7 @@ public class WebTesterJUnitRunner extends BlockJUnit4ClassRunner {
                 }
             }
 
-            private void executeBeforeClassForAllBrowsers() throws IllegalAccessException {
+            private void executeBeforeClassForAllBrowsers() throws ReflectiveOperationException {
                 for (ClassTestBrowser browser : classBrowsers) {
                     browser.beforeClass();
                 }
@@ -253,7 +253,7 @@ public class WebTesterJUnitRunner extends BlockJUnit4ClassRunner {
                 }
             }
 
-            private void executeBeforeTestForAllBrowsers() throws IllegalAccessException {
+            private void executeBeforeTestForAllBrowsers() throws ReflectiveOperationException {
                 for (ClassTestBrowser browser : classBrowsers) {
                     browser.beforeTest();
                 }

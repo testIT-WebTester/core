@@ -2,7 +2,6 @@ package info.novatec.testit.webtester.internal;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.Deque;
@@ -24,7 +23,7 @@ public final class ReflectionUtils {
 
     @Internal
     public static <T> T forceCreateInstance(Class<T> clazz, Object... constructionParameters)
-        throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        throws ReflectiveOperationException {
 
         Class<?>[] parameterClasses = getParameterClasses(constructionParameters);
         Constructor<T> classConstructor = clazz.getDeclaredConstructor(parameterClasses);
@@ -35,7 +34,7 @@ public final class ReflectionUtils {
 
     @Internal
     public static <T> T forceCreateInstance(Constructor<T> classConstructor, Object... constructionParameters)
-        throws InstantiationException, IllegalAccessException, InvocationTargetException {
+        throws ReflectiveOperationException {
 
         classConstructor.setAccessible(true);
         return classConstructor.newInstance(constructionParameters);
@@ -56,21 +55,20 @@ public final class ReflectionUtils {
     /* getting fields */
 
     @Internal
-    public static Object forceGetFieldValue(Class<?> clazz, String fieldName)
-        throws NoSuchFieldException, IllegalAccessException {
+    public static Object forceGetFieldValue(Class<?> clazz, String fieldName) throws ReflectiveOperationException {
         return forceGetFieldValue(clazz, null, fieldName);
     }
 
     @Internal
     public static Object forceGetFieldValue(Class<?> clazz, Object objectInstance, String fieldName)
-        throws NoSuchFieldException, IllegalAccessException {
+        throws ReflectiveOperationException {
         Field field = clazz.getDeclaredField(fieldName);
         field.setAccessible(true);
         return field.get(objectInstance);
     }
 
     @Internal
-    public static Object forceGetFieldValue(Field field, Object objectInstance) throws IllegalAccessException {
+    public static Object forceGetFieldValue(Field field, Object objectInstance) throws ReflectiveOperationException {
         field.setAccessible(true);
         return field.get(objectInstance);
     }
@@ -79,20 +77,21 @@ public final class ReflectionUtils {
 
     @Internal
     public static void forceSetField(Class<?> clazz, String fieldName, Object fieldValue)
-        throws NoSuchFieldException, IllegalAccessException {
+        throws ReflectiveOperationException {
         Field field = clazz.getDeclaredField(fieldName);
         forceSetField(field, null, fieldValue);
     }
 
     @Internal
     public static void forceSetField(String fieldName, Object objectInstance, Object fieldValue)
-        throws NoSuchFieldException, IllegalAccessException {
+        throws ReflectiveOperationException {
         Field field = objectInstance.getClass().getDeclaredField(fieldName);
         forceSetField(field, objectInstance, fieldValue);
     }
 
     @Internal
-    public static void forceSetField(Field field, Object objectInstance, Object fieldValue) throws IllegalAccessException {
+    public static void forceSetField(Field field, Object objectInstance, Object fieldValue)
+        throws ReflectiveOperationException {
         field.setAccessible(true);
         field.set(objectInstance, fieldValue);
     }
@@ -101,7 +100,7 @@ public final class ReflectionUtils {
 
     @Internal
     public static Object forceInvokeMethod(Method method, Object objectInstance, Object... methodParameters)
-        throws IllegalAccessException, InvocationTargetException {
+        throws ReflectiveOperationException {
         method.setAccessible(true);
         return method.invoke(objectInstance, methodParameters);
     }
