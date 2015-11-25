@@ -14,7 +14,7 @@ public class ClassTestBrowser extends AbstractTestBrowser {
         super(browserField);
     }
 
-    public void beforeClass() throws IllegalAccessException {
+    public void beforeClass() throws ReflectiveOperationException {
         LOGGER.debug("beforeClass");
         createBrowserAndSetStaticField();
     }
