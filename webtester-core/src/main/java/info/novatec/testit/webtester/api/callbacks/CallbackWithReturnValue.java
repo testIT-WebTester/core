@@ -4,11 +4,11 @@ package info.novatec.testit.webtester.api.callbacks;
  * A functional callback interface with one parameter of type A and a return
  * value of type B.
  *
- * @param <A> the input type of the callback method
- * @param <B> the return type of the callback method
+ * @param <P> the parameter type of the callback method
+ * @param <R> the return type of the callback method
  * @since 0.9.0
  */
-public interface CallbackWithReturnValue<A, B> {
+public interface CallbackWithReturnValue<P, R> {
 
     /**
      * This method is called by an action template and contains the logic of the
@@ -18,6 +18,6 @@ public interface CallbackWithReturnValue<A, B> {
      * @return the return value
      * @since 0.9.0
      */
-    B execute(A arg);
+    R execute(P arg);
 
 }

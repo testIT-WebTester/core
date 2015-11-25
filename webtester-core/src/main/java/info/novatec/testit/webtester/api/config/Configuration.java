@@ -23,7 +23,7 @@ import info.novatec.testit.webtester.utils.Waits;
  * Since they provide for a comfortable way to use specific
  * {@link ConfigurationAdapter adapters} and {@link ConfigurationExporter
  * exporters} to adapt (change configuration based on different sources) and
- * export the confiuguration's properties and values.
+ * export the configuration's properties and values.
  * <p>
  * Besides a number of 'named' properties with their own setter- and
  * getter-methods custom properties can be set and read as well.

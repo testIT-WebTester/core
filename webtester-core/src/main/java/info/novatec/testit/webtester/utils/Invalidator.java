@@ -36,11 +36,13 @@ public final class Invalidator {
     /**
      * Invalidates a list of {@link PageObject page objects}.
      *
+     * @param <T> the type of the page object list to invalidate
      * @param pageObjectList the list to invalidate
-     * @since 0.9.3
+     * @return the same page object list for fluent API use
+     * @since 1.1.0
      */
     @SuppressWarnings("rawtypes")
-    public static void invalidate(List<? extends PageObject> pageObjectList) {
+    public static <T extends PageObject> List<T> invalidate(List<T> pageObjectList) {
         if (pageObjectList instanceof PageObjectList) {
             (( PageObjectList ) pageObjectList).invalidate();
         } else {
@@ -48,6 +50,7 @@ public final class Invalidator {
                 invalidate(pageObject);
             }
         }
+        return pageObjectList;
     }
 
     /**
@@ -56,14 +59,17 @@ public final class Invalidator {
      * and calling {@link PageObject#invalidate() invalidate()} on each page
      * object or {@link LazyLoadingPageObjectList page object list} instance.
      *
+     * @param <T> the type of the page object to invalidate
      * @param pageObject the page object whose sub elements should be invalidated
-     * @since 0.9.3
+     * @return the same page object instance for fluent API use
+     * @since 1.1.0
      */
-    public static void invalidate(PageObject pageObject) {
+    public static <T extends PageObject> T invalidate(T pageObject) {
         Deque<Class<?>> classStack = ReflectionUtils.getClassAncestry(pageObject.getClass());
         while (!classStack.isEmpty()) {
             invalidatePageObjectsFieldsOfClass(pageObject, classStack.pop());
         }
+        return pageObject;
     }
 
     @SuppressWarnings("rawtypes")
