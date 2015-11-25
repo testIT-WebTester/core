@@ -2,13 +2,11 @@ package info.novatec.testit.webtester.junit.runner.internal;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.UndeclaredThrowableException;
 
 import org.apache.commons.lang.StringUtils;
 
 import info.novatec.testit.webtester.api.browser.Browser;
 import info.novatec.testit.webtester.api.browser.ProxyConfiguration;
-import info.novatec.testit.webtester.internal.annotations.Java7FeaturePossibility;
 import info.novatec.testit.webtester.junit.annotations.CreateUsing;
 import info.novatec.testit.webtester.junit.annotations.EntryPoint;
 import info.novatec.testit.webtester.junit.annotations.KeepAlive;
@@ -52,11 +50,11 @@ public abstract class AbstractTestBrowser {
         return this.field.getAnnotation(annotationClass) != null;
     }
 
-    protected void createBrowserAndSetStaticField() throws IllegalAccessException {
+    protected void createBrowserAndSetStaticField() throws ReflectiveOperationException {
         createBrowserIfNecessary(null);
     }
 
-    protected void createBrowserIfNecessary(Object target) throws IllegalAccessException {
+    protected void createBrowserIfNecessary(Object target) throws ReflectiveOperationException {
         Object fieldValue = field.get(target);
         if (fieldValue != null) {
             browser = ( Browser ) fieldValue;
@@ -66,22 +64,12 @@ public abstract class AbstractTestBrowser {
         }
     }
 
-    @Java7FeaturePossibility("Both Exceptions could be cought using ReflectiveOperationException type.")
-    private Browser createNewBrowser() {
-        try {
-
-            CreateUsing annotation = field.getAnnotation(CreateUsing.class);
-            if (annotation == null) {
-                throw new NoBrowserFactoryProvidedException();
-            }
-
-            return createNewBrowserFromAnnotation(annotation);
-
-        } catch (InstantiationException e) {
-            throw new UndeclaredThrowableException(e);
-        } catch (IllegalAccessException e) {
-            throw new UndeclaredThrowableException(e);
+    private Browser createNewBrowser() throws ReflectiveOperationException {
+        CreateUsing annotation = field.getAnnotation(CreateUsing.class);
+        if (annotation == null) {
+            throw new NoBrowserFactoryProvidedException();
         }
+        return createNewBrowserFromAnnotation(annotation);
     }
 
     private Browser createNewBrowserFromAnnotation(CreateUsing annotation)
@@ -117,7 +105,7 @@ public abstract class AbstractTestBrowser {
         }
     }
 
-    public abstract void beforeTest() throws IllegalAccessException;
+    public abstract void beforeTest() throws ReflectiveOperationException;
 
     public abstract void afterTest();
 

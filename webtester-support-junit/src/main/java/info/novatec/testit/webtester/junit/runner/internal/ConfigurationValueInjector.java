@@ -20,7 +20,7 @@ public final class ConfigurationValueInjector {
         void injectInto(Configuration config, String key, Field field, Object target) throws IllegalAccessException;
     }
 
-    private static final String UNINJECTABLE_FIELD_TYPE = "connot inject configuration values into fields of type ";
+    private static final String UNINJECTABLE_FIELD_TYPE = "cannot inject configuration values into fields of type ";
     private static final Object STATIC_TARGET = null;
 
     private static final Map<Class<?>, Injector> INJECTOR_MAP = new HashMap<Class<?>, Injector>();
@@ -127,8 +127,8 @@ public final class ConfigurationValueInjector {
         try {
             injector.injectInto(config, configurationValue.value(), field, target);
         } catch (IllegalAccessException e) {
-            /* since fields are set accessible at the beginning of this method
-             * IllegalAccessExceptions should not occur! */
+            /* since fields are set accessible at the beginning of this method  IllegalAccessExceptions should not occur.
+             * That makes it ok to throw an UndeclaredThrowableException */
             throw new UndeclaredThrowableException(e);
         }
 

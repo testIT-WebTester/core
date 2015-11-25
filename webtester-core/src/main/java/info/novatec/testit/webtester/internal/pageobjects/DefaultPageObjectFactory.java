@@ -51,7 +51,7 @@ import info.novatec.testit.webtester.utils.Waits;
  * via a constructor!
  */
 @Internal
-@SuppressWarnings({ "unchecked", "PMD.AvoidCatchingGenericException" })
+@SuppressWarnings("unchecked")
 public final class DefaultPageObjectFactory implements PageObjectFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(DefaultPageObjectFactory.class);
@@ -65,6 +65,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     }
 
     @Override
+    @SuppressWarnings("PMD.AvoidCatchingGenericException")
     public <T extends PageObject> T create(Class<T> pageClazz, PageObjectModel model, WebElement webElement) {
 
         try {
@@ -98,7 +99,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
         try {
             Constructor<T> classConstructor = pageClazz.getDeclaredConstructor();
             return ReflectionUtils.forceCreateInstance(classConstructor);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException e) {
             throw exception(pageClazz, e).inConstructor();
         }
     }
@@ -107,7 +108,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
         try {
             Field field = PageObject.class.getDeclaredField(FIELD_NAME_MODEL);
             ReflectionUtils.forceSetField(field, pageInstance, model);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException e) {
             throw exception(pageInstance, e).inModelFieldInjection();
         }
     }
@@ -116,7 +117,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
         try {
             Field field = PageObject.class.getDeclaredField(FIELD_NAME_WEB_ELEMENT);
             ReflectionUtils.forceSetField(field, pageInstance, webElement);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException e) {
             throw exception(pageInstance, e).inWebElementFieldInjection();
         }
     }
@@ -164,7 +165,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
         try {
             PageObject pageObject = create(( Class<? extends PageObject> ) field.getType(), metaData);
             ReflectionUtils.forceSetField(field, pageInstance, pageObject);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException | ClassCastException e) {
             throw exception(pageInstance, e).inPageObjectFieldInjection(field);
         }
 
@@ -183,7 +184,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
         try {
             PageObjectList<? extends PageObject> pageObjectList = new LazyLoadingPageObjectList(listType, listMetaData);
             ReflectionUtils.forceSetField(field, pageInstance, pageObjectList);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException | ClassCastException e) {
             throw exception(pageInstance, e).inPageObjectFieldInjection(field);
         }
 
@@ -216,7 +217,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     private <T extends PageObject> void tryToInvokePostConstructMethod(T pageInstance, Method method) {
         try {
             ReflectionUtils.forceInvokeMethod(method, pageInstance);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException e) {
             throw exception(pageInstance, e).whenExecutingPostConstructMethod(method);
         }
     }
@@ -271,7 +272,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     private <T extends PageObject> void tryToWaitOnPageObjectsVisibility(T pageInstance, Field field) {
         try {
             waitOnPageObjectsVisibility(pageInstance, field);
-        } catch (RuntimeException e) {
+        } catch (TimeoutException e) {
             throw exception(pageInstance, e).whenWaitingForVisibilityOfPageObjectField(field);
         }
     }
@@ -284,7 +285,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     private <T extends PageObject> void tryToWaitOnPageObjectListVisibility(T pageInstance, Field field) {
         try {
             waitOnPageObjectListsVisibility(pageInstance, field);
-        } catch (RuntimeException e) {
+        } catch (IllegalStateException e) {
             throw exception(pageInstance, e).whenWaitingForVisibilityOfPageObjectListField(field);
         }
     }
@@ -315,7 +316,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     private <T extends PageObject> PageObject getPageObjectFromOf(Field field, T pageInstance) {
         try {
             return ( PageObject ) ReflectionUtils.forceGetFieldValue(field, pageInstance);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException | ClassCastException e) {
             throw exception(pageInstance, e).whenGettingPageObjectField(field);
         }
     }
@@ -323,7 +324,7 @@ public final class DefaultPageObjectFactory implements PageObjectFactory {
     private <T extends PageObject> PageObjectList<PageObject> getPageObjectListFromOf(Field field, T pageInstance) {
         try {
             return ( PageObjectList<PageObject> ) ReflectionUtils.forceGetFieldValue(field, pageInstance);
-        } catch (Exception e) {
+        } catch (ReflectiveOperationException | ClassCastException e) {
             throw exception(pageInstance, e).whenGettingPageObjectListField(field);
         }
     }
