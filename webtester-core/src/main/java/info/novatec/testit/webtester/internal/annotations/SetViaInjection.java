@@ -6,14 +6,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-
 /**
- * Describes a possible optimization using Java 7 features. These optimizations
- * should be implemented as soon as WebTester support for Java 6 ends.
+ * Marks a field as 'injected'. This annotation is not used pragmatically.
+ * It exists just to clarify code pieces where some 'magic' happens.
  */
 @Documented
 @Retention(RetentionPolicy.SOURCE)
-@Target({ ElementType.TYPE, ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.METHOD })
-public @interface Java7FeaturePossibility {
-    String value();
+@Target(ElementType.FIELD)
+public @interface SetViaInjection {
+    // NOPROPS
 }
