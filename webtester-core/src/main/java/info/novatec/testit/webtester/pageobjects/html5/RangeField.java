@@ -125,8 +125,8 @@ public class RangeField extends TextField {
 
             @Override
             protected void executeAfterAction(RangeField RangeField, String oldRange, String newRange) {
-                logger.debug(logMessage(SET_RANGE), oldRange, newRange, "" + range);
-                fireEventAndMarkAsUsed(new RangeSetEvent(RangeField, oldRange, newRange, "" + range));
+                logger.debug(logMessage(SET_RANGE), oldRange, newRange, range);
+                fireEventAndMarkAsUsed(new RangeSetEvent(RangeField, oldRange, newRange, Integer.toString(range)));
             }
 
         });
