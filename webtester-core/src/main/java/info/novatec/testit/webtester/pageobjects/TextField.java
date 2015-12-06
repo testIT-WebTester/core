@@ -1,14 +1,5 @@
 package info.novatec.testit.webtester.pageobjects;
 
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Sets;
-
 import info.novatec.testit.webtester.api.callbacks.PageObjectCallback;
 import info.novatec.testit.webtester.api.exceptions.PageObjectIsDisabledException;
 import info.novatec.testit.webtester.api.exceptions.PageObjectIsInvisibleException;
@@ -17,6 +8,15 @@ import info.novatec.testit.webtester.eventsystem.events.pageobject.TextAppendedE
 import info.novatec.testit.webtester.eventsystem.events.pageobject.TextClearedEvent;
 import info.novatec.testit.webtester.eventsystem.events.pageobject.TextSetEvent;
 import info.novatec.testit.webtester.utils.Asserts;
+
+import java.util.Set;
+
+import org.apache.commons.lang.StringUtils;
+import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Sets;
 
 
 /**
@@ -31,8 +31,13 @@ import info.novatec.testit.webtester.utils.Asserts;
  * <ul>
  * <li><b>tag:</b> input <b>type:</b> password</li>
  * <li><b>tag:</b> input <b>type:</b> number</li>
+ * <li><b>tag:</b> input <b>type:</b> date</li>
+ * <li><b>tag:</b> input <b>type:</b> color</li>
+ * <li><b>tag:</b> input <b>type:</b> email</li>
+ * <li><b>tag:</b> input <b>type:</b> range</li>
+ * <li><b>tag:</b> input <b>type:</b> url</li>
  * </ul>
- *
+ * 
  * @since 0.9.0
  */
 public class TextField extends PageObject implements HasText {
@@ -44,12 +49,13 @@ public class TextField extends PageObject implements HasText {
     private static final String APPEND_TEXT = "changed text from '{}' to '{}' by trying to append '{}'";
 
     private static final String INPUT_TAG = "input";
-    private static final Set<String> VALID_TYPES = Sets.newHashSet("", "text", "password", "number");
+    private static final Set<String> VALID_TYPES = Sets.newHashSet("", "text", "password", "number", "date", "color",
+        "email", "range", "url");
 
     /**
      * Retrieves the text value of this {@link TextField text field}. If no text
      * is set an empty string is returned.
-     *
+     * 
      * @return the text of this text field
      * @since 0.9.0
      */
@@ -61,7 +67,7 @@ public class TextField extends PageObject implements HasText {
     /**
      * Clears the text of the {@link TextField text field} of any previously set
      * values.
-     *
+     * 
      * @return the same instance for fluent API use
      * @throws PageObjectIsDisabledException if the text field is disabled
      * @throws PageObjectIsInvisibleException if the text field is invisible
@@ -88,7 +94,7 @@ public class TextField extends PageObject implements HasText {
     /**
      * Sets the given text by replacing whatever text is currently set for the
      * {@link TextField text field}.
-     *
+     * 
      * @param textToSet the text to set
      * @return the same instance for fluent API use
      * @throws PageObjectIsDisabledException if the text field is disabled
@@ -117,7 +123,7 @@ public class TextField extends PageObject implements HasText {
     /**
      * Appends the given text to whatever text is currently set for the
      * {@link TextField text field}.
-     *
+     * 
      * @param textToAppend the text to append
      * @return the same instance for fluent API use
      * @throws PageObjectIsDisabledException if the text field is disabled
@@ -158,7 +164,7 @@ public class TextField extends PageObject implements HasText {
     /**
      * Specialized abstract {@link PageObjectCallback page object callback} used
      * to handle common behavior for all {@link TextField text field} actions.
-     *
+     * 
      * @since 0.9.6
      */
     protected static abstract class AbstractTextFieldCallback implements PageObjectCallback {
@@ -177,14 +183,14 @@ public class TextField extends PageObject implements HasText {
          * Execute an action on a {@link TextField text field}. This action
          * should not include things like firing events or logging output. Use
          * {@link #executeAfterAction(TextField, String, String)} for that.
-         *
+         * 
          * @param textField the text field to execute the action on
          */
         protected abstract void executeAction(TextField textField);
 
         /**
          * Execute after action tasks like logging or firing events.
-         *
+         * 
          * @param textField the text field
          * @param oldText the text of the text field before the action was
          * executed
