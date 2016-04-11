@@ -25,7 +25,7 @@ Set up the project and create the files as depicted below.
 
 ![Example Project](../images/gs_project_structure.png)
 
-Configure the Maven project to look like this and replace `${webtester-version}` with the version you want to use:
+Configure the Maven project to look like this and replace `${version.webtester}` and `${version.selenium}` with the versions you want to use:
 
 ```xml
 <project
@@ -44,36 +44,59 @@ Configure the Maven project to look like this and replace `${webtester-version}`
         <maven.compiler.target>1.7</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <!-- dependency versions -->
+        <version.webtester>1.1.0</version.webtester>
+        <version.selenium>2.53.0</version.selenium>
+        
     </properties>
  
     <dependencies>
+        <!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${version.selenium}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>${version.selenium}</version>
+        </dependency>
+
+        <!-- Webtester -->
         <dependency>
             <groupId>info.novatec.testit</groupId>
             <artifactId>webtester-core</artifactId>
-            <version>${webtester-version}</version>
+            <version>${version.webtester}</version>
         </dependency>
         <dependency>
             <groupId>info.novatec.testit</groupId>
             <artifactId>webtester-support-firefox</artifactId>
-            <version>${webtester-version}</version>
+            <version>${version.webtester}</version>
         </dependency>
         <dependency>
             <groupId>info.novatec.testit</groupId>
             <artifactId>webtester-support-junit</artifactId>
-            <version>${webtester-version}</version>
+            <version>${version.webtester}</version>
         </dependency>
+
+        <!-- Testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+
+        <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.1.3</version>
         </dependency>
     </dependencies>
-
+    
 </project>
 ```
 
@@ -93,10 +116,7 @@ the HTML source of the Twitter Login Page you'll need to find the Objects you ca
 button, the username field and the password field. We'll identify these two fields by id, while we'll use the class to
 get the login button.
 
-We need to make sure that we are on the correct page @PostConstruct of the PageObject. To achieve this the page title
-is matched with the title we expect. In our case the title should be the following.
-
-> Welcome to Twitter - Login or Sign up
+We need to make sure that we are on the correct page @PostConstruct of the PageObject. To achieve this the visibility of a PageObject is verified. In our case the login button is checked.
 
 For all the gory details, please view the source code below at line 23.
 
@@ -123,20 +143,27 @@ import info.novatec.testit.webtester.pageobjects.TextField;
  
 public class TwitterLogin extends PageObject {
  
-    @IdentifyUsing ( method = Method.CLASS_NAME, value = "primary-btn" )
+    @IdentifyUsing( method = Method.CSS, value = "button.Button.StreamsLogin.js-login" )
+    private Button openLoginPopup;
+    @IdentifyUsing( method = Method.CSS, value = "input.submit.btn.primary-btn.js-submit" )
     private Button loginButton;
-    @IdentifyUsing ( "signin-email" )
+    @IdentifyUsing ( method = Method.CSS, value = "input.text-input.email-input.js-signin-email" )
     private TextField usernameField;
-    @IdentifyUsing ( "signin-password" )
+    @IdentifyUsing ( method = Method.NAME, value = "session[password]" )
     private PasswordField passwordField;
  
     @PostConstruct
     private void assertThatCorrectPageIsDisplayed () {
-        assertEquals("Welcome to Twitter - Login or Sign up", getBrowser().getPageTitle());
+        assertTrue( openLoginPopup.isVisible() );
     }
  
     public TwitterHome login (String username, String password) {
-        return setUsername(username).setPassword(password).clickLogin();
+        return clickOpenLoginPopup().setUsername(username).setPassword(password).clickLogin();
+    }
+
+    private TwitterLogin clickOpenLoginPopup() {
+        openLoginPopup.click();
+        return this;
     }
  
     public TwitterLogin setUsername (String username) {
@@ -189,7 +216,7 @@ public class TwitterHome extends PageObject {
  
     @PostConstruct
     private void assertThatCorrectPageIsDisplayed () {
-        assertEquals("Twitter", getBrowser().getPageTitle());
+        assertTrue( assertTrue( tweetBox.isVisible() ); );
     }
  
     public TwitterHome tweet (String message) {
