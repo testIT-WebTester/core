@@ -129,58 +129,49 @@ of TwitterHome.
 
 ```java
 package pageobjects;
- 
+
 import static org.junit.Assert.assertEquals;
- 
-import info.novatec.testit.webtester.api.annotations.AfterInitialization;
+
 import info.novatec.testit.webtester.api.annotations.IdentifyUsing;
 import info.novatec.testit.webtester.api.enumerations.Method;
 import info.novatec.testit.webtester.pageobjects.Button;
 import info.novatec.testit.webtester.pageobjects.PageObject;
 import info.novatec.testit.webtester.pageobjects.PasswordField;
 import info.novatec.testit.webtester.pageobjects.TextField;
- 
- 
+import javax.annotation.PostConstruct;
+
 public class TwitterLogin extends PageObject {
- 
-    @IdentifyUsing( method = Method.CSS, value = "button.Button.StreamsLogin.js-login" )
-    private Button openLoginPopup;
-    @IdentifyUsing( method = Method.CSS, value = "input.submit.btn.primary-btn.js-submit" )
+
+    @IdentifyUsing(method = Method.XPATH, value = "//button[@class='submit btn primary-btn']")
     private Button loginButton;
-    @IdentifyUsing ( method = Method.CSS, value = "input.text-input.email-input.js-signin-email" )
+    @IdentifyUsing(method = Method.CLASS_NAME, value = "js-username-field")
     private TextField usernameField;
-    @IdentifyUsing ( method = Method.NAME, value = "session[password]" )
+    @IdentifyUsing(method = Method.CLASS_NAME, value = "js-password-field")
     private PasswordField passwordField;
- 
+
     @PostConstruct
-    private void assertThatCorrectPageIsDisplayed () {
-        assertTrue( openLoginPopup.isVisible() );
-    }
- 
-    public TwitterHome login (String username, String password) {
-        return clickOpenLoginPopup().setUsername(username).setPassword(password).clickLogin();
+    private void assertThatCorrectPageIsDisplayed() {
+        assertEquals("Bei Twitter anmelden", getBrowser().getPageTitle());
     }
 
-    private TwitterLogin clickOpenLoginPopup() {
-        openLoginPopup.click();
-        return this;
+    public TwitterHome login(String username, String password) {
+        return setUsername(username).setPassword(password).clickLogin();
     }
- 
-    public TwitterLogin setUsername (String username) {
+
+    public TwitterLogin setUsername(String username) {
         usernameField.setText(username);
         return this;
     }
- 
-    public TwitterLogin setPassword (String password) {
+
+    public TwitterLogin setPassword(String password) {
         passwordField.setText(password);
         return this;
     }
- 
-    public TwitterHome clickLogin () {
+
+    public TwitterHome clickLogin() {
         loginButton.click();
         return create(TwitterHome.class);
     }
- 
 }
 ```
 
@@ -201,43 +192,42 @@ import info.novatec.testit.webtester.api.enumerations.Method;
 import info.novatec.testit.webtester.pageobjects.Button;
 import info.novatec.testit.webtester.pageobjects.PageObject;
 import pageobjects.widgets.TweetBox;
- 
- 
+import javax.annotation.PostConstruct;
+
+
 public class TwitterHome extends PageObject {
- 
+
     @IdentifyUsing ( "tweet-box-home-timeline" )
     private TweetBox tweetBox;
-    @IdentifyUsing ( method = Method.CSS, value = 
-        ".btn.primary-btn.tweet-action.tweet-btn.js-tweet-btn" )
+    @IdentifyUsing ( method = Method.CSS, value = ".btn.primary-btn.tweet-action.tweet-btn.js-tweet-btn" )
     private Button sendTweetButton;
-    @IdentifyUsing ( method = Method.XPATH, value = 
-        ".//ol[@id='stream-items-id']/li[1]//p[contains(@class, 'tweet-text')]" )
+    @IdentifyUsing ( method = Method.XPATH, value = ".//ol[@id='stream-items-id']/li[1]//p[contains(@class, 'tweet-text')]" )
     private PageObject latestTweet;
- 
+
     @PostConstruct
     private void assertThatCorrectPageIsDisplayed () {
-        assertTrue( assertTrue( tweetBox.isVisible() ) );
+        assertEquals("Twitter", getBrowser().getPageTitle());
     }
- 
+
     public TwitterHome tweet (String message) {
         setTweetMessage(message).sendTweet();
         return this;
     }
- 
+
     public TwitterHome setTweetMessage (String message) {
         tweetBox.setMessage(message);
         return this;
     }
- 
+
     public TwitterHome sendTweet () {
         sendTweetButton.click();
         return create(TwitterHome.class);
     }
- 
-    public String getMessageOfLatestTweet () {
+
+    public String getMessageOfLatesTweet () {
         return latestTweet.getVisibleText();
     }
- 
+
 }
 ```
 
@@ -312,7 +302,7 @@ public class TwitterTest {
  
     @Resource
     @CreateUsing ( FirefoxFactory.class )
-    @EntryPoint ( "https://twitter.com/" )
+    @EntryPoint ( "https://twitter.com/login" )
     private Browser browser;
  
     @ConfigurationValue ( "twitter.username" )
