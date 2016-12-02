@@ -33,7 +33,7 @@ import info.novatec.testit.webtester.utils.Asserts;
  * @since 1.2.0
  */
 @Mapping(tag = "input", attribute = "type", values = { "", "text", "password", "number" })
-public class GenericTextField extends PageObject implements HasText {
+public class GenericTextField <T extends GenericTextField<T>> extends PageObject implements HasText {
 
     private static final Logger logger = LoggerFactory.getLogger(TextField.class);
 
@@ -62,7 +62,7 @@ public class GenericTextField extends PageObject implements HasText {
      * @throws PageObjectIsInvisibleException if the text field is invisible
      * @since 1.2.0
      */
-    public GenericTextField clearText() {
+    public T clearText() {
         executeAction(new AbstractTextFieldCallback() {
 
                              @Override
@@ -77,7 +77,7 @@ public class GenericTextField extends PageObject implements HasText {
             }
 
         });
-        return this;
+        return (T) this;
     }
 
     /**
@@ -93,7 +93,7 @@ public class GenericTextField extends PageObject implements HasText {
      * @throws PageObjectIsInvisibleException if the text field is invisible
      * @since 1.2.0
      */
-    public GenericTextField setText(final String textToSet) {
+    public T setText(final String textToSet) {
         executeAction(new AbstractTextFieldCallback() {
 
             @Override
@@ -109,7 +109,7 @@ public class GenericTextField extends PageObject implements HasText {
             }
 
         });
-        return this;
+        return (T) this;
     }
 
     /**
@@ -125,7 +125,7 @@ public class GenericTextField extends PageObject implements HasText {
      * @throws PageObjectIsInvisibleException if the text field is invisible
      * @since 1.2.0
      */
-    public GenericTextField appendText(final String textToAppend) {
+    public T appendText(final String textToAppend) {
         executeAction(new AbstractTextFieldCallback() {
 
             @Override
@@ -140,7 +140,7 @@ public class GenericTextField extends PageObject implements HasText {
             }
 
         });
-        return this;
+        return (T) this;
     }
 
     /**
