@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 
 import java.io.File;
 
+import info.novatec.testit.webtester.pageobjects.PageObject;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
@@ -53,6 +54,10 @@ public abstract class AbstractWebTesterIntegrationTest {
     }
 
     // UTILITY
+
+    protected void assertPageObjectCanBeInitialized(PageObject object) {
+        assertThat(object.isPresent(), is( true));
+    }
 
     protected static Browser getBrowser() {
         return browser;
