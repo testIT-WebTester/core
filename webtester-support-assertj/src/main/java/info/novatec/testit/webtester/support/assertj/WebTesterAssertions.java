@@ -1,6 +1,20 @@
 package info.novatec.testit.webtester.support.assertj;
 
-import info.novatec.testit.webtester.pageobjects.*;
+import info.novatec.testit.webtester.pageobjects.Button;
+import info.novatec.testit.webtester.pageobjects.Checkbox;
+import info.novatec.testit.webtester.pageobjects.GenericTextField;
+import info.novatec.testit.webtester.pageobjects.IFrame;
+import info.novatec.testit.webtester.pageobjects.Image;
+import info.novatec.testit.webtester.pageobjects.List;
+import info.novatec.testit.webtester.pageobjects.NumberField;
+import info.novatec.testit.webtester.pageobjects.PageObject;
+import info.novatec.testit.webtester.pageobjects.RadioButton;
+import info.novatec.testit.webtester.pageobjects.Table;
+import info.novatec.testit.webtester.pageobjects.TableField;
+import info.novatec.testit.webtester.pageobjects.TableRow;
+import info.novatec.testit.webtester.pageobjects.TextArea;
+import info.novatec.testit.webtester.pageobjects.TextField;
+
 import org.assertj.core.api.Assertions;
 
 
