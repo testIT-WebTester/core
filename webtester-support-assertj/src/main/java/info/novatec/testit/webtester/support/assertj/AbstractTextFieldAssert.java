@@ -1,6 +1,7 @@
 package info.novatec.testit.webtester.support.assertj;
 
 import info.novatec.testit.webtester.internal.Objects;
+import info.novatec.testit.webtester.pageobjects.GenericTextField;
 import info.novatec.testit.webtester.pageobjects.TextField;
 
 
@@ -16,7 +17,7 @@ import info.novatec.testit.webtester.pageobjects.TextField;
  * @since 0.9.8
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public abstract class AbstractTextFieldAssert<A extends AbstractTextFieldAssert, B extends TextField>
+public abstract class AbstractTextFieldAssert<A extends AbstractTextFieldAssert, B extends GenericTextField>
     extends AbstractPageObjectAssert<A, B> {
 
     protected AbstractTextFieldAssert(B actual, Class<A> selfType) {
