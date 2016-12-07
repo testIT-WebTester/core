@@ -1,5 +1,6 @@
 package info.novatec.testit.webtester.support.assertj;
 
+import info.novatec.testit.webtester.pageobjects.GenericTextField;
 import info.novatec.testit.webtester.pageobjects.TextField;
 
 
@@ -8,7 +9,7 @@ import info.novatec.testit.webtester.pageobjects.TextField;
  *
  * @since 0.9.8
  */
-public class TextFieldAssert extends AbstractTextFieldAssert<TextFieldAssert, TextField> {
+public class TextFieldAssert extends AbstractTextFieldAssert<TextFieldAssert, GenericTextField> {
 
     public TextFieldAssert(TextField actual) {
         super(actual, TextFieldAssert.class);
