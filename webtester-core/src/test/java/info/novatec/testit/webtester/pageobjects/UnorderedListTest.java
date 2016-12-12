@@ -79,19 +79,19 @@ public class UnorderedListTest extends AbstractPageObjectTest{
     /* correctness of class */
 
     @Test
-    public final void testCorrectnessOfClassForElement_orderedListTag() {
+    public final void testCorrectnessOfClassForWebElement_orderedListTag() {
         stubWebElementTag("ul");
         cut.validate(webElement);
     }
 
     @Test(expected = WrongElementClassException.class)
-    public final void testCorrectnessOfClassForElement_unorderedListTag() {
+    public final void testCorrectnessOfClassForWebElement_unorderedListTag() {
         stubWebElementTag("ol");
         cut.validate(webElement);
     }
 
     @Test(expected = WrongElementClassException.class)
-    public final void testCorrectnessOfClassForElement_otherTag() {
+    public final void testCorrectnessOfClassForWebElement_otherTag() {
         stubWebElementTag("other");
         cut.validate(webElement);
     }
