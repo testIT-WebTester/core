@@ -42,7 +42,7 @@ public class GenericTextFieldMatcher extends PageObjectMatcher {
 
     }
 
-    protected GenericTextFieldMatcher() {
+    private GenericTextFieldMatcher() {
             /*  utility constructor */
     }
 }
