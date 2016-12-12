@@ -71,6 +71,13 @@ public class Headline extends PageObject {
 
 - `<div/>`
 
+## EmailField
+**Extends:** GenericTextField
+
+**HTML Tags:**
+
+- `<input type="email"/>`
+
 ## Form
 **Extends:** PageObject
 

@@ -1,6 +1,7 @@
 package integration.pageobjects;
 
 import info.novatec.testit.webtester.api.annotations.IdentifyUsing;
+import info.novatec.testit.webtester.api.exceptions.WrongElementClassException;
 import info.novatec.testit.webtester.pageobjects.EmailField;
 import info.novatec.testit.webtester.pageobjects.PageObject;
 import integration.AbstractWebTesterIntegrationTest;
@@ -64,6 +65,18 @@ public class EmailFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
         assertThat(element.getText(), is(""));
     }
 
+    /* validation of mapping */
+
+    @Test()
+    public final void testValidationOfMapping_EmailField() {
+        assertPageObjectCanBeInitialized(page.empty);
+    }
+
+    @Test(expected = WrongElementClassException.class)
+    public final void testValidationOfMapping_noEmailField() {
+        assertPageObjectCanBeInitialized(page.noEmailField);
+    }
+
     /*  utilities   */
 
     public static class EmailFieldTestPage extends PageObject {
@@ -72,6 +85,9 @@ public class EmailFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
 
         @IdentifyUsing("withValue")
         EmailField withValue;
+
+        @IdentifyUsing("nonEmailField")
+        EmailField noEmailField;
 
         @PostConstruct
         void checkStartingConditions(){
