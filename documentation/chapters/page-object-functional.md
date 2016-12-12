@@ -78,6 +78,17 @@ public class Headline extends PageObject {
 
 - `<form/>`
 
+## GenericTextField
+**Extends:** PageObject
+
+**HTML Tags:**
+
+- `<input/>`
+- `<input type=""/>`
+- `<input type="text"/>`
+- `<input type="password"/>`
+- `<input type="number"/>`
+
 ## Headline
 **Extends:** PageObject
 
@@ -191,7 +202,7 @@ public class Headline extends PageObject {
 - `<textarea/>`
 
 ## TextField
-**Extends:** PageObject
+**Extends:** GenericTextField
 
 **HTML Tags:**
 

@@ -10,7 +10,7 @@ import org.hamcrest.Matcher;
  *
  * @since 1.2
  */
-public class GenericTextFieldMatcher extends PageObjectMatcher {
+public final class GenericTextFieldMatcher extends PageObjectMatcher {
 
 
     /**
@@ -42,7 +42,7 @@ public class GenericTextFieldMatcher extends PageObjectMatcher {
 
     }
 
-    protected GenericTextFieldMatcher() {
+    private GenericTextFieldMatcher() {
             /*  utility constructor */
     }
 }
