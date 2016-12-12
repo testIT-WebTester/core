@@ -6,6 +6,7 @@ page objects provided by the `webtester-core module`:
 
 - `ButtonAssert`
 - `CheckboxAssert`
+- `GenericTextFieldAssert`
 - `IFrameAssert`
 - `ImageAssert`
 - `ListAssert`
