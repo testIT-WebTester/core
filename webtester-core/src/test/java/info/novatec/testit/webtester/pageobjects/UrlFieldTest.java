@@ -10,8 +10,6 @@ public class UrlFieldTest extends AbstractPageObjectTest{
     @InjectMocks
     UrlField cut;
 
-    /*  Correctness of Class    */
-
     @Test
     public final void testCorrectnessOfClassForWebElement_inputTag_urlFieldType() {
         stubWebElementTagAndType("input", "url");

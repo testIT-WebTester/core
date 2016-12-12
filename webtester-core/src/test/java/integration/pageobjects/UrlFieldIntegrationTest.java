@@ -1,6 +1,7 @@
 package integration.pageobjects;
 
 import info.novatec.testit.webtester.api.annotations.IdentifyUsing;
+import info.novatec.testit.webtester.api.exceptions.WrongElementClassException;
 import info.novatec.testit.webtester.pageobjects.PageObject;
 import info.novatec.testit.webtester.pageobjects.UrlField;
 import integration.AbstractWebTesterIntegrationTest;
@@ -64,6 +65,18 @@ public class UrlFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
         assertThat(element.getText(), is(""));
     }
 
+    /* validation of mapping */
+
+    @Test
+    public final void testValidationOfMapping_urlField() {
+        assertPageObjectCanBeInitialized(page.empty);
+    }
+
+    @Test(expected = WrongElementClassException.class)
+    public final void testValidationOfMapping_noUrlField() {
+        assertPageObjectCanBeInitialized(page.notAnUrlField);
+    }
+
     /*  utilities   */
 
     public static class UrlFieldTestPage extends PageObject {
@@ -73,8 +86,11 @@ public class UrlFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
         @IdentifyUsing("withValue")
         UrlField withValue;
 
+        @IdentifyUsing("notAnUrlField")
+        UrlField notAnUrlField;
+
         @PostConstruct
-        void checkStartingConditions(){
+        void checkStartingConditions() {
             assertThat(empty.isVisible(), is(true));
             assertThat(withValue.isVisible(), is(true));
 

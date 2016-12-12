@@ -211,3 +211,10 @@ public class Headline extends PageObject {
 - `<input type="text"/>`
 - `<input type="password"/>`
 - `<input type="number"/>`
+
+## UrdlField
+**Extends:** GenericTextField
+
+**HTML Tags:**
+
+- `<input type="url"/>`
