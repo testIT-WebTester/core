@@ -144,6 +144,13 @@ public class Headline extends PageObject {
 
 - `<input type="number"/>`
 
+## Paragraph
+**Extends:** PageObject
+
+**HTML Tags:**
+
+- `<p/>`
+
 ## PasswordField
 **Extends:** TextField
 

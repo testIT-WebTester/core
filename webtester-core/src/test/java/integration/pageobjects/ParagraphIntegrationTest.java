@@ -25,17 +25,19 @@ public class ParagraphIntegrationTest extends AbstractWebTesterIntegrationTest {
         return "html/pageobjects/paragraph.html";
     }
 
-    /* correctness of mapping */
+    /* validation of mapping */
 
     @Test
-    public final void testCorrectnessOfMapping_Paragraph() {
+    public final void testValidationOfMapping_Paragraph() {
         assertPageObjectCanBeInitialized(page.paragraph);
     }
 
     @Test(expected = WrongElementClassException.class)
-    public final void testCorrectnessOfMapping_NoParagraph() {
+    public final void testValidationOfMapping_NoParagraph() {
         assertPageObjectCanBeInitialized(page.noParagraph);
     }
+
+    /* utilities */
 
     private static class ParagraphTestPage extends PageObject {
         @IdentifyUsing("paragraph")

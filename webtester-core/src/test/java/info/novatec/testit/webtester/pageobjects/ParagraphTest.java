@@ -21,7 +21,7 @@ public class ParagraphTest extends AbstractPageObjectTest{
     }
 
     @Test(expected = WrongElementClassException.class)
-    public final void testCorrectnesssOfClassForWebElement_otherTag() {
+    public final void testCorrectnessOfClassForWebElement_otherTag() {
         stubWebElementTag("other");
         cut.validate(webElement);
     }
