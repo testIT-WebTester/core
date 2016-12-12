@@ -10,8 +10,6 @@ public class TelephoneFieldTest extends AbstractPageObjectTest{
     @InjectMocks
     TelephoneField cut;
 
-    /*  Correctness of Class    */
-
     @Test
     public final void testCorrectnessOfClassForWebElement_inputTag_telephoneFieldType() {
         stubWebElementTagAndType("input", "tel");

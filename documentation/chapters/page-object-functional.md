@@ -194,6 +194,13 @@ public class Headline extends PageObject {
 
 - `<tr/>`
 
+## TelephoneField
+**Extends:** GenericTextField
+
+**HTML Tags:**
+
+- `<input type="tel"/>`
+
 ## TextArea
 **Extends:** TextField
 

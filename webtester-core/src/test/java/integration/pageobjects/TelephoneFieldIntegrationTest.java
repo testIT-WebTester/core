@@ -1,6 +1,7 @@
 package integration.pageobjects;
 
 import info.novatec.testit.webtester.api.annotations.IdentifyUsing;
+import info.novatec.testit.webtester.api.exceptions.WrongElementClassException;
 import info.novatec.testit.webtester.pageobjects.PageObject;
 import info.novatec.testit.webtester.pageobjects.TelephoneField;
 import integration.AbstractWebTesterIntegrationTest;
@@ -12,6 +13,7 @@ import javax.annotation.PostConstruct;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+
 
 public class TelephoneFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
     TelephoneFieldTestPage page;
@@ -64,6 +66,18 @@ public class TelephoneFieldIntegrationTest extends AbstractWebTesterIntegrationT
         assertThat(element.getText(), is(""));
     }
 
+    /* validation of mapping */
+
+    @Test
+    public final void testValidationOfMapping_telephoneField() {
+        assertPageObjectCanBeInitialized(page.empty);
+    }
+
+    @Test(expected = WrongElementClassException.class)
+    public final void testValidationOfMapping_noTelephoneField() {
+        assertPageObjectCanBeInitialized(page.notATelephoneField);
+    }
+
     /*  utilities   */
 
     public static class TelephoneFieldTestPage extends PageObject {
@@ -73,8 +87,11 @@ public class TelephoneFieldIntegrationTest extends AbstractWebTesterIntegrationT
         @IdentifyUsing("withValue")
         TelephoneField withValue;
 
+        @IdentifyUsing("notATelephoneField")
+        TelephoneField notATelephoneField;
+
         @PostConstruct
-        void checkStartingConditions(){
+        void checkStartingConditions() {
             assertThat(empty.isVisible(), is(true));
             assertThat(withValue.isVisible(), is(true));
 
