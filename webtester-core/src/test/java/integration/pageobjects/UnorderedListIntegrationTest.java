@@ -143,7 +143,7 @@ public class UnorderedListIntegrationTest extends AbstractWebTesterIntegrationTe
 
     /**
      * This test verifies that nested lists are handled correctly. 'Correctly'
-     * in this case means: only the list items of the orignal list are found.
+     * in this case means: only the list items of the original list are found.
      */
     @Test
     public final void testThatNestedListsReturnsCorrectItems() {
@@ -151,25 +151,22 @@ public class UnorderedListIntegrationTest extends AbstractWebTesterIntegrationTe
         assertThat(page.nestedLists.getItem(1).getVisibleText(), is("Four"));
         assertThat(page.nestedLists.getItem(2).getVisibleText(), is("Five"));
     }
-
-    /**
-     * This tests the correctness of class with different tags.
-     */
-    /* correctness of class */
+    
+    /* validation of class */
 
     @Test
-    public final void testCorrectnessOfClass_orderedList() {
+    public final void testValidationOfClass_orderedList() {
         assertPageObjectCanBeInitialized(page.fullUnorderedList);
     }
 
     @Test(expected = WrongElementClassException.class)
-    public final void testCorrectnessOfClass_unorderedList() {
+    public final void testValidationOfClass_unorderedList() {
         assertPageObjectCanBeInitialized(page.orderedList);
     }
 
     @Test(expected = WrongElementClassException.class)
-    public final void testCorrectnessOfClass_noList() {
-        assertPageObjectCanBeInitialized(page.noList);
+    public final void testValidationOfClass_noList() {
+        assertPageObjectCanBeInitialized(page.notAList);
     }
 
     /* utilities   */
@@ -188,7 +185,7 @@ public class UnorderedListIntegrationTest extends AbstractWebTesterIntegrationTe
         @IdentifyUsing("orderedList")
         UnorderedList orderedList;
 
-        @IdentifyUsing("noList")
-        UnorderedList noList;
+        @IdentifyUsing("notAList")
+        UnorderedList notAList;
     }
 }
