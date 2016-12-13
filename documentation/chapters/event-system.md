@@ -37,6 +37,7 @@ The `webtester-core` module provides events for all it's actions:
 
 - `ClickedEvent`
 - `DoubleClickedEvent`
+- `FormSubmittedEvent`
 - `SelectedByIndexEvent`
 - `SelectedByTextEvent`
 - `SelectedByValueEvent`
