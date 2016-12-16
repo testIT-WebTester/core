@@ -208,6 +208,13 @@ public class Headline extends PageObject {
 
 - `<select/>`
 
+## SingleSelect
+**Extends:** GenericSelect
+
+**HTML Tags:**
+
+- `<select attribute="!multiple"/>`
+
 ## Span
 **Extends:** PageObject
 
