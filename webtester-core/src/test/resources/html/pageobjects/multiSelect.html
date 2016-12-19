@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../_style.css">
+</head>
+<body>
+
+<h1>MultiSelect Test Page</h1>
+<h3>This page contains elements for testing the functionality of the MultiSelect page fragment class.</h3>
+
+<hr>
+<br><br>
+
+<table>
+    <tbody>
+    <tr>
+        <td>A multi select without any options</td>
+        <td>
+            <select id="emptySelect" multiple="multiple"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>A multi select without any pre-selection</td>
+        <td>
+            <select id="multiSelect" multiple="multiple">
+                <option value="1">one</option>
+                <option value="2">two</option>
+                <option value="3">three</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>A multi select with pre-selection</td>
+        <td>
+            <select id="multiSelectWithSelection" multiple="multiple">
+                <option value="1">one</option>
+                <option value="2" selected="selected">two</option>
+                <option value="3" selected="selected">three</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>A single select</td>
+        <td>
+            <select id="singleSelect"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>Not a select</td>
+        <td>
+            <div id="notASelect"></div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br><br>
+<hr>
+
+</body>
+</html>

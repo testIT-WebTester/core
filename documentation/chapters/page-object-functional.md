@@ -144,6 +144,13 @@ public class Headline extends PageObject {
 
 - `<li/>`
 
+##MultiSelect
+**Extends:** GenericSelect
+
+**HTML Tags:**
+
+-`<select multiple="multiple"/>`
+
 ## NumberField
 **Extends:** TextField
 
