@@ -2,6 +2,7 @@ package info.novatec.testit.webtester.support.assertj;
 
 import info.novatec.testit.webtester.pageobjects.Button;
 import info.novatec.testit.webtester.pageobjects.Checkbox;
+import info.novatec.testit.webtester.pageobjects.GenericList;
 import info.novatec.testit.webtester.pageobjects.GenericTextField;
 import info.novatec.testit.webtester.pageobjects.IFrame;
 import info.novatec.testit.webtester.pageobjects.Image;
@@ -34,6 +35,13 @@ public final class WebTesterAssertions extends Assertions {
 
     public static CheckboxAssert assertThat(Checkbox actual) {
         return new CheckboxAssert(actual);
+    }
+
+    public static GenericListAssert assertThat(GenericList actual) {
+        return new GenericListAssert(actual);
+    }
+    public static GenericTextFieldAssert assertThat(GenericTextField actual) {
+        return new GenericTextFieldAssert(actual);
     }
 
     public static IFrameAssert assertThat(IFrame actual) {
@@ -78,10 +86,6 @@ public final class WebTesterAssertions extends Assertions {
 
     public static TextFieldAssert assertThat(TextField actual) {
         return new TextFieldAssert(actual);
-    }
-
-    public static GenericTextFieldAssert assertThat(GenericTextField actual) {
-        return new GenericTextFieldAssert(actual);
     }
 
     private WebTesterAssertions() {
