@@ -6,6 +6,7 @@ page objects provided by the `webtester-core module`:
 
 - `ButtonMatcher`
 - `CheckboxMatcher`
+- `GenericListMatcher`
 - `GenericTextFieldMatcher`
 - `IFrameMatcher`
 - `ImageMatcher`
