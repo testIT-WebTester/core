@@ -158,6 +158,13 @@ public class Headline extends PageObject {
 
 - `<input type="radio"/>`
 
+## SearchField
+**Extends:** GenericTextField
+
+**HTML Tags:**
+
+- `<input type="search"/>`
+
 ## Select
 **Extends:** PageObject
 
