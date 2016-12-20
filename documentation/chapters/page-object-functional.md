@@ -89,6 +89,13 @@ public class Headline extends PageObject {
 - `<input type="password"/>`
 - `<input type="number"/>`
 
+## GenericSelect
+**Extends:** PageObject
+
+**HTML Tags:**
+
+- `<select/>`
+
 ## Headline
 **Extends:** PageObject
 
