@@ -44,7 +44,7 @@ public class GenericListIntegrationTest extends AbstractWebTesterIntegrationTest
 
     @Test (expected = WrongElementClassException.class)
     public final void testValidationOfMapping_noList() {
-        assertPageObjectCanBeInitialized(page.noList);
+        assertPageObjectCanBeInitialized(page.notAList);
     }
 
     /*  utilities   */
@@ -56,7 +56,7 @@ public class GenericListIntegrationTest extends AbstractWebTesterIntegrationTest
         @IdentifyUsing("unorderedList")
         GenericList unorderedList;
 
-        @IdentifyUsing("noList")
-        GenericList noList;
+        @IdentifyUsing("notAList")
+        GenericList notAList;
     }
 }
