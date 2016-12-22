@@ -107,7 +107,7 @@ public class GenericSelectIntegrationTest extends AbstractWebTesterIntegrationTe
 
     @Test(expected = WrongElementClassException.class)
     public final void testValidationOfClass_noSelect() {
-        assertPageObjectCanBeInitialized(page.noSelect);
+        assertPageObjectCanBeInitialized(page.notASelect);
     }
 
     /* utilities */
@@ -122,8 +122,8 @@ public class GenericSelectIntegrationTest extends AbstractWebTesterIntegrationTe
         @IdentifyUsing("emptySelect")
         GenericSelect emptySelect;
 
-        @IdentifyUsing("noSelect")
-        GenericSelect noSelect;
+        @IdentifyUsing("notASelect")
+        GenericSelect notASelect;
 
     }
 }
