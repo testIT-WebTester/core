@@ -152,6 +152,13 @@ public class Headline extends PageObject {
 
 - `<input type="number"/>`
 
+## OrderedList
+**Extends:** GenericList
+
+**HTML Tags:**
+
+- `<ol/>`
+
 ## PasswordField
 **Extends:** TextField
 
