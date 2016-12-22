@@ -67,14 +67,14 @@ public class EmailFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
 
     /* validation of mapping */
 
-    @Test()
+    @Test
     public final void testValidationOfMapping_EmailField() {
         assertPageObjectCanBeInitialized(page.empty);
     }
 
     @Test(expected = WrongElementClassException.class)
     public final void testValidationOfMapping_noEmailField() {
-        assertPageObjectCanBeInitialized(page.noEmailField);
+        assertPageObjectCanBeInitialized(page.notAnEmailField);
     }
 
     /*  utilities   */
@@ -86,11 +86,11 @@ public class EmailFieldIntegrationTest extends AbstractWebTesterIntegrationTest{
         @IdentifyUsing("withValue")
         EmailField withValue;
 
-        @IdentifyUsing("nonEmailField")
-        EmailField noEmailField;
+        @IdentifyUsing("notAnEmailField")
+        EmailField notAnEmailField;
 
         @PostConstruct
-        void checkStartingConditions(){
+        void checkStartingConditions() {
             assertThat(empty.isVisible(), is(true));
             assertThat(withValue.isVisible(), is(true));
 

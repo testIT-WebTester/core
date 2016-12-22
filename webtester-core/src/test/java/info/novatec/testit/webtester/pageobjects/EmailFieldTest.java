@@ -10,8 +10,6 @@ public class EmailFieldTest extends AbstractPageObjectTest{
     @InjectMocks
     EmailField cut;
 
-    /*  Correctness of Class    */
-
     @Test
     public final void testCorrectnessOfClassForWebElement_inputTag_searchFieldType() {
         stubWebElementTagAndType("input", "email");
