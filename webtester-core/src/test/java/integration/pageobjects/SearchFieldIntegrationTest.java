@@ -74,23 +74,23 @@ public class SearchFieldIntegrationTest extends AbstractWebTesterIntegrationTest
 
     @Test(expected = WrongElementClassException.class)
     public final void testValidationOfMapping_noSearchField() {
-        assertPageObjectCanBeInitialized(page.noSearchField);
+        assertPageObjectCanBeInitialized(page.notASearchField);
     }
 
     /*  utilities   */
 
-    public static class SearchFieldTestPage extends PageObject{
+    public static class SearchFieldTestPage extends PageObject {
         @IdentifyUsing("empty")
         SearchField empty;
 
         @IdentifyUsing("withValue")
         SearchField withValue;
 
-        @IdentifyUsing("noSearchField")
-        SearchField noSearchField;
+        @IdentifyUsing("notASearchField")
+        SearchField notASearchField;
 
         @PostConstruct
-        void checkStartingConditions(){
+        void checkStartingConditions() {
             assertThat(empty.isVisible(), is(true));
             assertThat(withValue.isVisible(), is(true));
 

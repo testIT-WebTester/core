@@ -11,8 +11,6 @@ public class SearchFieldTest extends AbstractPageObjectTest {
     @InjectMocks
     SearchField cut;
 
-    /* Correctness of Class */
-
     @Test
     public final void testCorrectnessOfClassForWebElement_inputTag_searchFieldType() {
         stubWebElementTagAndType("input", "search");
