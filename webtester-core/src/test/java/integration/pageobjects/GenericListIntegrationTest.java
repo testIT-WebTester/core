@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * These tests check aspects of the {@link List list} page object which can only
+ * These tests check aspects of the {@link GenericList generic list} page object which can only
  * be verified by using them on a live web-site with a real {@link Browser
  * browser}. Some of them might also check if we are using Selenium features
  * correctly.

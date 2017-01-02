@@ -8,11 +8,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
-import org.openqa.selenium.WebElement;
 
 import java.util.LinkedList;
-
-import sun.plugin.dom.exception.NoModificationAllowedException;
 
 import info.novatec.testit.webtester.AbstractPageObjectTest;
 import info.novatec.testit.webtester.api.exceptions.WrongElementClassException;
