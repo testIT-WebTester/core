@@ -21,13 +21,6 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
 
     private static final Logger logger = LoggerFactory.getLogger(Select.class);
 
-    private static final String NOTHING_SELECTED_TEXT =
-        "Could not return selected option's visible text since there is nothing selected!";
-    private static final String NOTHING_SELECTED_VALUE =
-        "Could not return selected option's value since there is nothing selected!";
-    private static final String NOTHING_SELECTED_INDEX =
-        "Could not return selected option's index since there is nothing selected!";
-
     /**
      * Selects all options with the given texts. If no value is given,
      *
