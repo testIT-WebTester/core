@@ -40,6 +40,7 @@ public final class WebTesterAssertions extends Assertions {
     public static GenericListAssert assertThat(GenericList actual) {
         return new GenericListAssert(actual);
     }
+
     public static GenericTextFieldAssert assertThat(GenericTextField actual) {
         return new GenericTextFieldAssert(actual);
     }

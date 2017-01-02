@@ -19,8 +19,6 @@ public class GenericList extends PageObject{
      * @return the list item children of this list
      * @see GenericList
      * @see ListItem
-     * @see OrderedList
-     * @see UnorderedList
      * @since 1.2
      */
     @IdentifyUsing(method = Method.XPATH, value = "./li")
@@ -34,8 +32,6 @@ public class GenericList extends PageObject{
      * @return true if empty otherwise false
      * @see GenericList
      * @see ListItem
-     * @see OrderedList
-     * @see UnorderedList
      * @since 1.2
      */
     public Boolean isEmpty() {
@@ -49,8 +45,6 @@ public class GenericList extends PageObject{
      * @return the number of items in this list
      * @see GenericList
      * @see ListItem
-     * @see OrderedList
-     * @see UnorderedList
      * @since 1.2
      */
     public Integer getNumberOfItems() {
@@ -65,8 +59,6 @@ public class GenericList extends PageObject{
      * @throws IndexOutOfBoundsException if given index does not exist
      * @see GenericList
      * @see ListItem
-     * @see OrderedList
-     * @see UnorderedList
      * @since 1.2
      */
     public ListItem getItem(final int index) {
@@ -87,8 +79,6 @@ public class GenericList extends PageObject{
      * @return list of all direct list items of this list
      * @see ListItem
      * @see GenericList
-     * @see OrderedList
-     * @see UnorderedList
      * @since 1.2
      */
     public java.util.List<ListItem> getItems() {
