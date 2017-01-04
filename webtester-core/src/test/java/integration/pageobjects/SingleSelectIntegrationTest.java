@@ -1,6 +1,8 @@
 package integration.pageobjects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 
 import org.junit.Before;
@@ -35,13 +37,13 @@ public class SingleSelectIntegrationTest extends AbstractWebTesterIntegrationTes
     @Test
     public final void testThatOptionCanBeSelectedByText_singleSelect() {
         page.singleSelect.selectByText("two");
-        assertThat(page.singleSelect.getSelectionText().equals("two"), is(true));
+        assertThat(page.singleSelect.getSelectionText(), is("two"));
     }
 
     @Test
     public final void testThatOptionCanBeSelectedByText_singleSelectWithSelection() {
         page.singleSelectWithSelection.selectByText("one");
-        assertThat(page.singleSelectWithSelection.getSelectionText().equals("one"), is(true));
+        assertThat(page.singleSelectWithSelection.getSelectionText(), is("one"));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -54,13 +56,13 @@ public class SingleSelectIntegrationTest extends AbstractWebTesterIntegrationTes
     @Test
     public final void testThatOptionCanBeSelectedByValue_singleSelect() {
         page.singleSelect.selectByValue("2");
-        assertThat(page.singleSelect.getSelectionValue().equals("2"), is(true));
+        assertThat(page.singleSelect.getSelectionValue(), is("2"));
     }
 
     @Test
     public final void testThatOptionCanBeSelectedByValue_singleSelectWithSelection() {
         page.singleSelectWithSelection.selectByValue("1");
-        assertThat(page.singleSelectWithSelection.getSelectionValue().equals("1"), is(true));
+        assertThat(page.singleSelectWithSelection.getSelectionValue(), is("1"));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -73,13 +75,13 @@ public class SingleSelectIntegrationTest extends AbstractWebTesterIntegrationTes
     @Test
     public final void testThatOptionCanBeSelectedByIndex_singleSelect() {
         page.singleSelect.selectByIndex(1);
-        assertThat(page.singleSelect.getSelectionIndex().equals(1), is(true));
+        assertThat(page.singleSelect.getSelectionIndex(), is(1));
     }
 
     @Test
     public final void testThatOptionCanBeSelectedByIndex_singleSelectWithSelection() {
         page.singleSelectWithSelection.selectByIndex(0);
-        assertThat(page.singleSelectWithSelection.getSelectionIndex().equals(0), is(true));
+        assertThat(page.singleSelectWithSelection.getSelectionIndex(), is(0));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -93,13 +95,13 @@ public class SingleSelectIntegrationTest extends AbstractWebTesterIntegrationTes
     public final void testThatTextIsReturnedCorrectly_singleSelect() {
         // if nothing is selected the first element is selected by default
         String text = page.singleSelect.getSelectionText();
-        assertThat(text.equals("one"), is(true));
+        assertThat(text, is("one"));
     }
 
     @Test
     public final void testThatTextIsReturnedCorrectly_singleSelectWithSelection() {
         String text = page.singleSelectWithSelection.getSelectionText();
-        assertThat(text.equals("two"), is(true));
+        assertThat(text, is("two"));
     }
 
     @Test(expected = NullPointerException.class)
@@ -113,13 +115,13 @@ public class SingleSelectIntegrationTest extends AbstractWebTesterIntegrationTes
     @Test
     public final void testThatValueIsReturnedCorrectly_singleSelect() {
         String value = page.singleSelect.getSelectionValue();
-        assertThat(value.equals("1"), is(true));
+        assertThat(value, is("1"));
     }
 
     @Test
     public final void testThatValueIsReturnedCorrectly_singleSelectWithSelection() {
         String value = page.singleSelectWithSelection.getSelectionValue();
-        assertThat(value.equals("2"), is(true));
+        assertThat(value, is("2"));
     }
 
     @Test(expected = NullPointerException.class)
@@ -133,13 +135,13 @@ public class SingleSelectIntegrationTest extends AbstractWebTesterIntegrationTes
     @Test
     public final void testThatIndexIsReturnedCorrectly_singleSelect() {
         Integer index = page.singleSelect.getSelectionIndex();
-        assertThat(index.equals(0), is(true));
+        assertThat(index, is(0));
     }
 
     @Test
     public final void testThatIndexIsReturnedCorrectly_singleSelectWithSelection() {
         Integer index = page.singleSelectWithSelection.getSelectionIndex();
-        assertThat(index.equals(1), is(true));
+        assertThat(index, is(1));
     }
 
     @Test(expected = NullPointerException.class)
