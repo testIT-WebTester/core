@@ -18,12 +18,12 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
 
     private static final Logger logger = LoggerFactory.getLogger(Select.class);
 
-    private static final String NOTHING_SELECTED_TEXT =
-        "Could not return selected option's visible text since there is nothing selected!";
-    private static final String NOTHING_SELECTED_VALUE =
-        "Could not return selected option's value since there is nothing selected!";
-    private static final String NOTHING_SELECTED_INDEX =
-        "Could not return selected option's index since there is nothing selected!";
+    private static final String NO_EXISTING_OPTIONS_TEXT =
+        "Could not return selected option's visible text since there are no options!";
+    private static final String NO_EXISTING_OPTIONS_VALUE =
+        "Could not return selected option's value since there are no options!";
+    private static final String NO_EXISTING_OPTIONS_INDEX =
+        "Could not return selected option's index since there are no options!";
 
     /**
      * Select an option by its visible text. If no parameter is given this function
@@ -105,7 +105,7 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
                     String text = getSelectedOption().getText();
                     return text;
                 } catch (NoSuchElementException e){
-                    logger.warn(logMessage(NOTHING_SELECTED_TEXT));
+                    logger.warn(logMessage(NO_EXISTING_OPTIONS_TEXT));
                     return null;
                 }
 
@@ -130,7 +130,7 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
                     String value = getSelectedOption().getAttribute("value");
                     return value;
                 } catch (NoSuchElementException e){
-                    logger.warn(logMessage(NOTHING_SELECTED_VALUE));
+                    logger.warn(logMessage(NO_EXISTING_OPTIONS_VALUE));
                     return null;
                 }
             }
@@ -154,7 +154,7 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
                     String indexAsString = getSelectedOption().getAttribute("index");
                     return Integer.valueOf(indexAsString);
                 } catch (NoSuchElementException e){
-                    logger.warn(logMessage(NOTHING_SELECTED_INDEX));
+                    logger.warn(logMessage(NO_EXISTING_OPTIONS_INDEX));
                     return null;
                 }
             }
