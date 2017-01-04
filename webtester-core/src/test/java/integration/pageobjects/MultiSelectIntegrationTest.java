@@ -2,6 +2,7 @@ package integration.pageobjects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 
 import org.junit.Before;
@@ -128,7 +129,7 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
     @Test
     public final void testThatAllOptionsAreDeselected() {
         page.multiSelectWithSelection.deselectAll();
-        assertThat(page.multiSelectWithSelection.getAllSelectedOptions().isEmpty(), is(true));
+        assertThat(page.multiSelectWithSelection.getAllSelectedOptions(), is(empty()));
     }
 
     /* deselect by text */
@@ -141,7 +142,7 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
     @Test
     public final void testThatOptionsAreDeselectedCorrectlyByTexts_multipleDeselect() {
         page.multiSelectWithSelection.deselectByTexts("two", "three");
-        assertThat(page.multiSelectWithSelection.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.multiSelectWithSelection.getAllSelectedTexts(), is(empty()));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -160,7 +161,7 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
     @Test
     public final void testThatOptionsAreDeselectedCorrectlyByValue_multipleDeselect() {
         page.multiSelectWithSelection.deselectByValues("2", "3");
-        assertThat(page.multiSelectWithSelection.getAllSelectedValues().isEmpty(), is(true));
+        assertThat(page.multiSelectWithSelection.getAllSelectedValues(), is(empty()));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -179,7 +180,7 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
     @Test
     public final void testThatCorrectOptionsAreDeselectedCorrectlyByIndices_multipleDeselect() {
         page.multiSelectWithSelection.deselectByIndices(1, 2);
-        assertThat(page.multiSelectWithSelection.getAllSelectedIndices().isEmpty(), is(true));
+        assertThat(page.multiSelectWithSelection.getAllSelectedIndices(), is(empty()));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -196,12 +197,12 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
 
     @Test
     public final void testThatSelectWithNoSelectionsReturnsEmptyList_getAllSelectedTexts() {
-        assertThat(page.multiSelect.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.multiSelect.getAllSelectedTexts(), is(empty()));
     }
 
     @Test
     public final void testThatSelectWithNoOptionsReturnsEmptyList_getAllSelectedTexts() {
-        assertThat(page.emptySelect.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.emptySelect.getAllSelectedTexts(), is(empty()));
     }
 
     /* get all selected values */
@@ -213,12 +214,12 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
 
     @Test
     public final void testThatSelectWithNoSelectionsReturnsEmptyList_getAllSelectedValues() {
-        assertThat(page.multiSelect.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.multiSelect.getAllSelectedTexts(), is(empty()));
     }
 
     @Test
     public final void testThatSelectWithNoOptionsReturnsEmptyList_getAllSelectedValues() {
-        assertThat(page.emptySelect.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.emptySelect.getAllSelectedTexts(), is(empty()));
     }
 
     /* get all selected indices */
@@ -230,12 +231,12 @@ public class MultiSelectIntegrationTest extends AbstractWebTesterIntegrationTest
 
     @Test
     public final void testThatSelectWithNoSelectionsReturnsEmptyList_getAllSelectedIndices() {
-        assertThat(page.multiSelect.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.multiSelect.getAllSelectedTexts(), is(empty()));
     }
 
     @Test
     public final void testThatSelectWithNoOptionsReturnsEmptyList_getAllSelectedIndices() {
-        assertThat(page.emptySelect.getAllSelectedTexts().isEmpty(), is(true));
+        assertThat(page.emptySelect.getAllSelectedTexts(), is(empty()));
     }
 
     /* get number of options */
