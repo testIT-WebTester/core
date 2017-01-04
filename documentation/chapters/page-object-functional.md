@@ -166,6 +166,13 @@ public class Headline extends PageObject {
 
 - `<input type="number"/>`
 
+## OrderedList
+**Extends:** GenericList
+
+**HTML Tags:**
+
+- `<ol/>`
+
 ## Paragraph
 **Extends:** PageObject
 
