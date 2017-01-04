@@ -255,7 +255,14 @@ public class Headline extends PageObject {
 - `<input type="password"/>`
 - `<input type="number"/>`
 
-## UrdlField
+## UnorderedList
+**Extends:** GenericList
+
+**HTML Tags:**
+
+- `<ul/>`
+
+## UrlField
 **Extends:** GenericTextField
 
 **HTML Tags:**
