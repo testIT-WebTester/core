@@ -59,8 +59,8 @@ public class UnorderedListTest extends AbstractPageObjectTest{
     @Test
     public final void testThatItemCanBeRetrievedCorrectly() {
         addBothItems();
-        assertThat(cut.getItem(0).equals(item1), is(true));
-        assertThat(cut.getItem(1).equals(item2), is(true));
+        assertThat(cut.getItem(0), is(item1));
+        assertThat(cut.getItem(1), is(item2));
     }
 
     /* get items */
