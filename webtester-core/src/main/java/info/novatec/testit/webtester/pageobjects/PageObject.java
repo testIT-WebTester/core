@@ -502,6 +502,10 @@ public class PageObject {
         logger.trace(logMessage("fired event: {}"), event);
     }
 
+    protected final void markAsRead() {
+        Marker.markAsRead(this);
+    }
+
     /**
      * Creates a new instance for the given {@linkplain PageObject page object}
      * class using the {@linkplain Browser browser's} creation mechanism. This

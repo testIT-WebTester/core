@@ -40,6 +40,23 @@ public final class Marker {
         }
     }
 
+    /**
+     * Marks the given {@link PageObject page object} as 'read' using the
+     * configured colors from the page object's browser's {@link Configuration
+     * configuration}.
+     *
+     * @param pageObject the page object to mark.
+     * @since 1.2
+     */
+    public static void markAsRead(PageObject pageObject) {
+        Configuration configuration = pageObject.getBrowser().getConfiguration();
+        if (configuration.markingsAreActivated()) {
+            Color backgroundColor = configuration.getMarkingsColorReadBackground();
+            Color outlineColor = configuration.getMarkingsColorReadOutline();
+            markElement(pageObject, backgroundColor, outlineColor);
+        }
+    }
+
     private static void markElement(PageObject pageObject, Color backgroundColor, Color outlineColor) {
 
         Map<CSSProperty, String> cssStyleAttributes = new HashMap<CSSProperty, String>();
