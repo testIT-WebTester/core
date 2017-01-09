@@ -116,7 +116,7 @@ public class BaseConfiguration implements Configuration {
 
     @Override
     public Color getMarkingsColorUsedBackground() {
-        return Color.fromString(getStringProperty(key(NamedProperties.MARKINGS_COLOR_USED_BACKGROUND), "#90ee90"));
+        return Color.fromString(getStringProperty(key(NamedProperties.MARKINGS_COLOR_USED_BACKGROUND), "#ffd2a5"));
     }
 
     @Override
@@ -126,12 +126,32 @@ public class BaseConfiguration implements Configuration {
 
     @Override
     public Color getMarkingsColorUsedOutline() {
-        return Color.fromString(getStringProperty(key(NamedProperties.MARKINGS_COLOR_USED_OUTLINE), "#008000"));
+        return Color.fromString(getStringProperty(key(NamedProperties.MARKINGS_COLOR_USED_OUTLINE), "#916f22"));
     }
 
     @Override
     public BaseConfiguration setMarkingsColorUsedOutline(Color color) {
         return setProperty(key(NamedProperties.MARKINGS_COLOR_USED_OUTLINE), color.toString());
+    }
+
+    @Override
+    public Color getMarkingsColorReadBackground() {
+        return Color.fromString(getStringProperty(key(NamedProperties.MARKINGS_COLOR_READ_BACKGROUND), "#90ee90"));
+    }
+
+    @Override
+    public BaseConfiguration setMarkingsColorReadBackground(Color color) {
+        return setProperty(key(NamedProperties.MARKINGS_COLOR_READ_BACKGROUND), color.toString());
+    }
+
+    @Override
+    public Color getMarkingsColorReadOutline() {
+        return Color.fromString(getStringProperty(key(NamedProperties.MARKINGS_COLOR_READ_OUTLINE), "#008000"));
+    }
+
+    @Override
+    public BaseConfiguration setMarkingsColorReadOutline(Color color) {
+        return setProperty(key(NamedProperties.MARKINGS_COLOR_READ_OUTLINE), color.toString());
     }
 
     @Override

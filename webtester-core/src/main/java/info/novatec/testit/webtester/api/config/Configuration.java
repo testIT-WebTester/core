@@ -198,6 +198,44 @@ public interface Configuration {
     Configuration setMarkingsColorUsedOutline(Color color);
 
     /**
+     * Returns the color to use for the background of elements marked as 'read'
+     * on a page.
+     *
+     * @return the color
+     * @since 1.2
+     */
+    Color getMarkingsColorReadBackground();
+
+    /**
+     * Sets the color to use for the background of elements marked as 'read' on
+     * a page.
+     *
+     * @param color the color to set
+     * @return the same configuration for fluent API
+     * @since 1.2
+     */
+    Configuration setMarkingsColorReadBackground(Color color);
+
+    /**
+     * Returns the color to use for the outline of elements marked as 'read' on
+     * a page.
+     *
+     * @return the color
+     * @since 1.2
+     */
+    Color getMarkingsColorReadOutline();
+
+    /**
+     * Sets the color to use for the outline of elements marked as 'read' on a
+     * page.
+     *
+     * @param color the color to set
+     * @return the same configuration for fluent API
+     * @since 1.2
+     */
+    Configuration setMarkingsColorReadOutline(Color color);
+
+    /**
      * Returns the default maximum number of seconds to wait when executing wait
      * operations on page objects using the {@link Waits} API.
      *

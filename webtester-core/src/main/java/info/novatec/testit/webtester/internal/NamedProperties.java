@@ -50,13 +50,23 @@ public enum NamedProperties {
 
     @Documentation("Color to use for the background of used elements if color highlighting is active.")
     @TypeDefinition(Constants.HEX_COLOR)
-    @DefaultValue("#90ee90")
+    @DefaultValue("#ffd2a5")
     MARKINGS_COLOR_USED_BACKGROUND("markings.color.used.background"),
 
     @Documentation("Color to use for the outline of used elements if color highlighting is active.")
     @TypeDefinition(Constants.HEX_COLOR)
-    @DefaultValue("#008000")
+    @DefaultValue("#916f22")
     MARKINGS_COLOR_USED_OUTLINE("markings.color.used.outline"),
+
+    @Documentation("Color to use for the background of read elements if color highlighting is active.")
+    @TypeDefinition(Constants.HEX_COLOR)
+    @DefaultValue("#90ee90")
+    MARKINGS_COLOR_READ_BACKGROUND("markings.color.read.background"),
+
+    @Documentation("Color to use fot the outline of read elements if color highlighting is active")
+    @TypeDefinition(Constants.HEX_COLOR)
+    @DefaultValue("#008000")
+    MARKINGS_COLOR_READ_OUTLINE("markings.color.read.outline"),
 
     @Documentation("Default timeout for wait operations.")
     @TypeDefinition(Constants.SECONDS_AS_INT)
