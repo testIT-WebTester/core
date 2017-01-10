@@ -138,6 +138,7 @@ public class Select extends PageObject {
             @Override
             public String execute(PageObject pageObject) {
                 try {
+                    pageObject.markAsRead();
                     return getFirstSelectedOption().getText();
                 } catch (NoSuchElementException e) {
                     logger.warn(logMessage(NOTHING_SELECTED_TEXT));
@@ -160,6 +161,7 @@ public class Select extends PageObject {
 
             @Override
             public List<String> execute(PageObject pageObject) {
+                pageObject.markAsRead();
                 List<String> selectedTexts = new LinkedList<String>();
                 for (WebElement option : getAllSelectedOptions()) {
                     selectedTexts.add(option.getText());
@@ -183,6 +185,7 @@ public class Select extends PageObject {
             @Override
             public String execute(PageObject pageObject) {
                 try {
+                    pageObject.markAsRead();
                     return getFirstSelectedOption().getAttribute("value");
                 } catch (NoSuchElementException e) {
                     logger.warn(logMessage(NOTHING_SELECTED_VALUE));
@@ -205,6 +208,7 @@ public class Select extends PageObject {
 
             @Override
             public List<String> execute(PageObject pageObject) {
+                pageObject.markAsRead();
                 List<String> selectedValues = new LinkedList<String>();
                 for (WebElement option : getAllSelectedOptions()) {
                     selectedValues.add(option.getAttribute("value"));
@@ -228,6 +232,7 @@ public class Select extends PageObject {
             @Override
             public Integer execute(PageObject pageObject) {
                 try {
+                    pageObject.markAsRead();
                     String indexAsString = getFirstSelectedOption().getAttribute("index");
                     return Integer.valueOf(indexAsString);
                 } catch (NoSuchElementException e) {
@@ -251,6 +256,7 @@ public class Select extends PageObject {
 
             @Override
             public List<Integer> execute(PageObject pageObject) {
+                pageObject.markAsRead();
                 List<Integer> selectedIndices = new LinkedList<Integer>();
                 for (WebElement option : getAllSelectedOptions()) {
                     String indexAsString = option.getAttribute("index");
@@ -276,6 +282,7 @@ public class Select extends PageObject {
 
             @Override
             public List<String> execute(PageObject pageObject) {
+                pageObject.markAsRead();
                 List<String> texts = new LinkedList<String>();
                 for (WebElement option : getAllOptions()) {
                     texts.add(option.getText());
@@ -300,6 +307,7 @@ public class Select extends PageObject {
 
             @Override
             public List<String> execute(PageObject pageObject) {
+                pageObject.markAsRead();
                 List<String> values = new LinkedList<String>();
                 for (WebElement option : getAllOptions()) {
                     values.add(option.getAttribute("value"));

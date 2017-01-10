@@ -157,6 +157,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
         for (WebElement option : allSelectedOptions) {
             allSelectedTexts.add(option.getText());
         }
+        this.markAsRead();
         return allSelectedTexts;
     }
 
@@ -173,6 +174,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
         for (WebElement option : allSelectedOptions) {
             allSelectedValues.add(option.getAttribute("value"));
         }
+        this.markAsRead();
         return allSelectedValues;
     }
 
@@ -190,6 +192,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
             String index = option.getAttribute("index");
             allSelectedIndices.add(Integer.valueOf(index));
         }
+        this.markAsRead();
         return allSelectedIndices;
     }
 
