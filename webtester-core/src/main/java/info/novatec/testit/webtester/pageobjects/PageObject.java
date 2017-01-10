@@ -183,6 +183,7 @@ public class PageObject {
 
             @Override
             public String execute(PageObject pageObject) {
+                pageObject.markAsRead();
                 return getWebElement().getText();
             }
 
