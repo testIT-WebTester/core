@@ -35,6 +35,7 @@ public class Button extends PageObject implements HasValue<String>, HasLabel {
      */
     @Override
     public String getValue() {
+        this.markAsRead();
         return StringUtils.defaultString(getAttribute("value"));
     }
 
