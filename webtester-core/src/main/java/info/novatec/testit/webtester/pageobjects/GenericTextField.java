@@ -158,6 +158,7 @@ public class GenericTextField <T extends GenericTextField<T>> extends PageObject
 
             @Override
             public void execute(PageObject pageObject) {
+                pageObject.markAsUsed();
                 pageObject.getWebElement().sendKeys(Keys.ENTER);
             }
 

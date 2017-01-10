@@ -99,6 +99,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
      * @since 1.2
      */
     public void deselectAll() {
+        this.markAsUsed();
         getSelect().deselectAll();
     }
 
@@ -111,6 +112,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
      * @since 1.2
      */
     public void deselectByTexts(final String... texts) {
+        this.markAsUsed();
         for (String text : texts) {
             getSelect().deselectByVisibleText(text);
         }
@@ -125,6 +127,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
      *  @since 1.2
      */
     public void deselectByValues(final String... values) {
+        this.markAsUsed();
         for (String value : values) {
             getSelect().deselectByValue(value);
         }
@@ -139,6 +142,7 @@ public class MultiSelect extends GenericSelect<MultiSelect> {
      * @since 1.2
      */
     public void deselectByIndices(final Integer... indices) {
+        this.markAsUsed();
         for (Integer index : indices) {
             getSelect().deselectByIndex(index);
         }

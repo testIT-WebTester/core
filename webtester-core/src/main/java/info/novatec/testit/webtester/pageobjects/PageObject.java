@@ -507,6 +507,10 @@ public class PageObject {
         Marker.markAsRead(this);
     }
 
+    protected final void markAsUsed() {
+        Marker.markAsUsed(this);
+    }
+
     /**
      * Creates a new instance for the given {@linkplain PageObject page object}
      * class using the {@linkplain Browser browser's} creation mechanism. This
