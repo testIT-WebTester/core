@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feature: Debug Markings</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../_style.css">
+    <style>
+        body {
+        font-family: Verdana, Arial, sans-serif;
+        font-style: normal;
+        font-size: 14px;
+        }
+        .credential-table {
+        border: 1px solid #666666;
+        margin:auto;
+        padding: 10px;
+        text-align: right;
+        }
+        .login-table {
+        border: 1px solid #666666;
+        margin:auto;
+        padding: 10px;
+        text-align: right;
+        }
+        .text-field {
+        border: 1px solid #666666;
+        }
+        .button {
+        border: 1px solid #666666;
+        background-color: #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+
+<div id="errorMessage" style="display: none; background-color: #FF0000">Wrong Credentials!</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div style="text-align: center;">
+    <table class="credential-table">
+        <tr>
+            <td>Username for login form:</td>
+            <td><input type="text" id="usernameCredential" value="user42" class="text-field"></td>
+        </tr>
+        <tr>
+            <td>Password for login form:</td>
+            <td><input type="password" id="passwordCredential" value="pswd123" class="text-field"></td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+</div>
+
+<div style="text-align: center;">
+    <form id="loginForm"
+          name="loginForm"
+          onsubmit="alert('Wrong Credentials');">
+        <table class="login-table">
+            <tr>
+                <td>Username:</td>
+                <td><input id="username" type="text" name="username" class="text-field" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input id="password" type="password" name="password" class="text-field" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    <input id="login" type="submit" value="Login" class="button" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

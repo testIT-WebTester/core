@@ -50,6 +50,7 @@ public class GenericTextField <T extends GenericTextField<T>> extends PageObject
      */
     @Override
     public String getText() {
+        this.markAsRead();
         return StringUtils.defaultString(getAttribute("value"));
     }
 
