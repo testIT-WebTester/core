@@ -21,7 +21,7 @@ public class LocalFileConfigurationAdapter extends ClasspathPropertiesFileConfig
     private static final String PROPERTIES_FILE = "testit-webtester.properties";
 
     public LocalFileConfigurationAdapter() {
-        super(PROPERTIES_FILE);
+        super(PROPERTIES_FILE, Importance.RECOMMENDED);
     }
 
 }

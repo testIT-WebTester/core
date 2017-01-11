@@ -22,7 +22,7 @@ public class GlobalFileConfigurationAdapter extends ClasspathPropertiesFileConfi
     private static final String PROPERTIES_FILE = "testit-webtester-global.properties";
 
     public GlobalFileConfigurationAdapter() {
-        super(PROPERTIES_FILE);
+        super(PROPERTIES_FILE, Importance.OPTIONAL);
     }
 
 }

@@ -21,7 +21,7 @@ public class DefaultFileConfigurationAdapter extends ClasspathPropertiesFileConf
     private static final String PROPERTIES_FILE = "testit-webtester-default.properties";
 
     public DefaultFileConfigurationAdapter() {
-        super(PROPERTIES_FILE);
+        super(PROPERTIES_FILE, Importance.REQUIRED);
     }
 
 }
