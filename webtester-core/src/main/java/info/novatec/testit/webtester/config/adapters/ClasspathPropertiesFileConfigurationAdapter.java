@@ -25,10 +25,82 @@ public class ClasspathPropertiesFileConfigurationAdapter extends AbstractPropert
 
     private static final Logger logger = LoggerFactory.getLogger(ClasspathPropertiesFileConfigurationAdapter.class);
 
-    private String propertyFilePath;
+    private static final String FILE_NOT_ON_CLASSPATH =
+        "{} properties file {} wasn't found on the classpath - it's properties will not be merged into configuration.";
 
+    /**
+     * Classification how important the existence of a configuration file is.
+     *
+     * @see ClasspathPropertiesFileConfigurationAdapter
+     * @since 1.2
+     */
+    public enum Importance {
+
+        /** Property file is optional - if not found an INFO will be logged. */
+        OPTIONAL {
+            public void handleFileNotFound(String path) {
+                logger.info(FILE_NOT_ON_CLASSPATH, "Optional", path);
+            }
+        },
+
+        /** Property file is recommended - if not found a WARNING will be logged. */
+        RECOMMENDED {
+            public void handleFileNotFound(String path) {
+                logger.info(FILE_NOT_ON_CLASSPATH, "Optional", path);
+            }
+        },
+
+        /** Property file is required - if not found an exception will be thrown. */
+        REQUIRED {
+            public void handleFileNotFound(String path) {
+                String message = "Required properties file " + path + " wasn't found on the classpath!";
+                throw new IllegalStateException(message);
+            }
+        };
+
+        public abstract void handleFileNotFound(String path);
+    }
+
+    private final String propertyFilePath;
+    private final Importance importance;
+
+    /**
+     * Creates a new instance for the given property file path and a default {@link Importance} of
+     * {@link Importance#OPTIONAL}.
+     * <p>
+     * The property file path must be provided in a format relative to the classpath root.
+     * <p>
+     * <b>Examples:</b>
+     * <ul>
+     * <li>my.properties</li>
+     * <li>some/folders/within/classpath/my.properties</li>
+     * </ul>
+     *
+     * @param propertyFilePath the path to the property file on the classpath
+     * @since 1.2
+     */
     public ClasspathPropertiesFileConfigurationAdapter(String propertyFilePath) {
+        this(propertyFilePath, Importance.OPTIONAL);
+    }
+
+    /**
+     * Creates a new instance for the given property file path and a {@link Importance}.
+     * <p>
+     * The property file path must be provided in a format relative to the classpath root.
+     * <p>
+     * <b>Examples:</b>
+     * <ul>
+     * <li>my.properties</li>
+     * <li>some/folders/within/classpath/my.properties</li>
+     * </ul>
+     *
+     * @param propertyFilePath the path to the property file on the classpath
+     * @param importance the importance of the property file
+     * @since 1.2
+     */
+    public ClasspathPropertiesFileConfigurationAdapter(String propertyFilePath, Importance importance) {
         this.propertyFilePath = propertyFilePath;
+        this.importance = importance;
     }
 
     @Override
@@ -38,7 +110,7 @@ public class ClasspathPropertiesFileConfigurationAdapter extends AbstractPropert
 
         URL resource = getClass().getClassLoader().getResource(propertyFilePath);
         if (resource == null) {
-            logger.warn("Could not load configuration file! {} file is not on the classpath.", propertyFilePath);
+            importance.handleFileNotFound(propertyFilePath);
             return false;
         }
 
