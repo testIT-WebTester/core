@@ -46,7 +46,7 @@ public class ClasspathPropertiesFileConfigurationAdapter extends AbstractPropert
         /** Property file is recommended - if not found a WARNING will be logged. */
         RECOMMENDED {
             public void handleFileNotFound(String path) {
-                logger.info(FILE_NOT_ON_CLASSPATH, "Optional", path);
+                logger.info(FILE_NOT_ON_CLASSPATH, "Recommended", path);
             }
         },
 
