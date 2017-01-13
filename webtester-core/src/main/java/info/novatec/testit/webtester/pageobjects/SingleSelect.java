@@ -102,7 +102,6 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
             @Override
             public String execute(PageObject pageObject) {
                 try {
-                    pageObject.markAsRead();
                     String text = getSelectedOption().getText();
                     return text;
                 } catch (NoSuchElementException e){
@@ -128,7 +127,6 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
             @Override
             public String execute(PageObject pageObject) {
                 try {
-                    pageObject.markAsRead();
                     String value = getSelectedOption().getAttribute("value");
                     return value;
                 } catch (NoSuchElementException e){
@@ -153,7 +151,6 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
             @Override
             public Integer execute(PageObject pageObject) {
                 try {
-                    pageObject.markAsRead();
                     String indexAsString = getSelectedOption().getAttribute("index");
                     return Integer.valueOf(indexAsString);
                 } catch (NoSuchElementException e){
@@ -165,6 +162,7 @@ public class SingleSelect extends GenericSelect<SingleSelect> {
     }
 
     public WebElement getSelectedOption() {
+        this.markAsRead();
         return getSelect().getFirstSelectedOption();
     }
 }
