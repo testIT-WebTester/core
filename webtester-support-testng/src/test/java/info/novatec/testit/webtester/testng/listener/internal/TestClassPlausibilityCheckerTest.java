@@ -23,13 +23,13 @@ public class TestClassPlausibilityCheckerTest {
         static Browser staticBrowser;
 
         @Resource
-        Browser browser;
+        private Browser browser;
 
         @ConfigurationValue("static.property")
         static String staticProperty;
 
         @ConfigurationValue("property")
-        String property;
+        private String property;
 
     }
 
@@ -45,13 +45,13 @@ public class TestClassPlausibilityCheckerTest {
 
         @Primary
         @Resource
-        Browser browser;
+        private Browser browser;
 
         @ConfigurationValue("static.property")
         static String staticProperty;
 
         @ConfigurationValue("property")
-        String property;
+        private String property;
 
     }
 
@@ -110,10 +110,10 @@ public class TestClassPlausibilityCheckerTest {
     private static class InjectableTypeTestClass {
 
         @Resource
-        Browser browser;
+        private Browser browser;
 
         @ConfigurationValue("property")
-        File property;
+        private File property;
 
     }
 
