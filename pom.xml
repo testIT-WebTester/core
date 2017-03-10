@@ -50,6 +50,7 @@
 		<module>webtester-support-junit</module>
 		<module>webtester-support-spring4</module>
 		<module>webtester-support-marionette</module>
+		<module>webtester-support-testng</module>
 
 	</modules>
 
@@ -437,7 +438,6 @@
 						<execution>
 							<goals>
 								<goal>check</goal>
-								<goal>cpd-check</goal>
 							</goals>
 						</execution>
 					</executions>
