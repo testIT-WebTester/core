@@ -1,7 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%20License%202.0-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 [![Build Status](https://travis-ci.org/testIT-WebTester/webtester-core.svg?branch=master)](https://travis-ci.org/testIT-WebTester/webtester-core)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/49127ec017e2458cbf43c2d9aeb97579)](https://www.codacy.com/app/slu-it/webtester-core)
-[![Issue Count](https://codeclimate.com/github/testIT-WebTester/webtester-core/badges/issue_count.svg)](https://codeclimate.com/github/testIT-WebTester/webtester-core)
 
 ![testIT WebTester](documentation/images/logo-650x157.png)
 
